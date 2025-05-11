@@ -2,7 +2,7 @@ package com.example.books_social.book;
 
 import java.time.LocalDate;
 
-public record Book (
+public record BookData(
         int id,
         String title,
         String gender,
