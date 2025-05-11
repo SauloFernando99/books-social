@@ -13,10 +13,8 @@ public record BookData(
         @NotBlank
         String gender,
         @NotNull
-        @NotBlank
         LocalDate date,
         @NotNull
-        @NotBlank
         LocalDate finished,
         @NotNull
         @NotBlank
@@ -31,7 +29,6 @@ public record BookData(
         @NotBlank
         String cover,
         @NotNull
-        @NotBlank
         int numberPages,
         @NotNull
         @NotBlank
