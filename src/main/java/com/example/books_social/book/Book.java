@@ -30,4 +30,18 @@ public class Book {
     private int numberPages;
     private String readingStatus;
     private String bookType;
+
+    public Book(BookData data){
+        this.title = data.title();
+        this.gender = data.gender();
+        this.date = data.date();
+        this.finished = data.finished();
+        this.review = data.review();
+        this.favoriteCharacter = data.favoriteCharacter();;
+        this.assessment = data.assessment();
+        this.cover = data.cover();
+        this.numberPages = data.numberPages();;
+        this.readingStatus = data.readingStatus();
+        this.bookType = data.bookType();
+    }
 }
