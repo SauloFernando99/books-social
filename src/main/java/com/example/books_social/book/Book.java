@@ -1,5 +1,7 @@
 package com.example.books_social.book;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Book {
 
     @Id
@@ -22,7 +25,7 @@ public class Book {
     private String title;
     private String gender;
     private LocalDate date;
-    private  LocalDate finished;
+    private LocalDate finished;
     private String review;
     private String favoriteCharacter;
     private  String assessment;
@@ -30,6 +33,8 @@ public class Book {
     private int numberPages;
     private String readingStatus;
     private String bookType;
+
+    public Book(){}
 
     public Book(BookData data){
         this.title = data.title();

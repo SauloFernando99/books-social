@@ -1,5 +1,5 @@
 CREATE TABLE book (
-    id BIGINT not null auto_increment PRIMARY KEY,
+    id BIGINT not null auto_increment,
     title VARCHAR(255) not null,
     gender VARCHAR(100) not null,
     date DATE not null,
@@ -10,5 +10,6 @@ CREATE TABLE book (
     cover VARCHAR(255) not null,
     number_pages INT not null,
     reading_status VARCHAR(50) not null,
-    book_type VARCHAR(50) not null
+    book_type VARCHAR(50) not null,
+    PRIMARY KEY(id)
 );

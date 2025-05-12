@@ -6,10 +6,9 @@ import com.example.books_social.book.BookRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("book")
@@ -20,5 +19,10 @@ public class BooksController {
     @Transactional
     public void register(@RequestBody @Valid BookData data){
         repository.save(new Book(data));
+    }
+
+    @GetMapping
+    public List<Book> list() {
+        return repository.findAll();
     }
 }
