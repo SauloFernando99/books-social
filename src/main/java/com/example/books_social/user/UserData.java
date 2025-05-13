@@ -11,7 +11,6 @@ public record UserData (
     String password,
     @NotBlank
     String userName,
-    @NotBlank
     String userPicture
 
 ){

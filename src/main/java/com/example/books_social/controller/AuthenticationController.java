@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager manager;
+
     @PostMapping
     public ResponseEntity signIn(@RequestBody @Valid UserData data){
         var token = new UsernamePasswordAuthenticationToken(data.email(), data.password());
