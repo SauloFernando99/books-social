@@ -3,6 +3,7 @@ package com.example.books_social.controller;
 import com.example.books_social.user.User;
 import com.example.books_social.user.UserData;
 import com.example.books_social.util.security.BooksTokenService;
+import com.example.books_social.util.security.JwtTokenData;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,8 @@ public class AuthenticationController {
     public ResponseEntity signIn(@RequestBody @Valid UserData data){
         var token = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var authentication = manager.authenticate(token);
-        return ResponseEntity.ok( tokenService.generateToken((User) authentication.getPrincipal()) );
+        var jwtToken = tokenService.generateToken((User) authentication.getPrincipal());
+
+        return ResponseEntity.ok(new JwtTokenData(jwtToken));
     }
 }
