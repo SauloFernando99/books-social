@@ -1,9 +1,13 @@
 package com.example.books_social.util.security;
 
+import com.example.books_social.user.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -12,6 +16,11 @@ import java.io.IOException;
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
+    @Autowired
+    private BooksTokenService tokenService;
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -19,13 +28,16 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         var authorizationHeader = request.getHeader("Authorization");
 
-        if (authorizationHeader == null){
-            throw new RuntimeException("JWT Token not sent!");
+        if (authorizationHeader != null) {
+            authorizationHeader = authorizationHeader.replace("Bearer ", "");
+
+            var subject = tokenService.getSubject(authorizationHeader);
+            System.out.println(subject);
+            var usuario = userRepository.findByEmail(subject);
+            var authentication = new UsernamePasswordAuthenticationToken(usuario, null,
+                    usuario.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
-        authorizationHeader = authorizationHeader.replace("Bearer ","");
-
-        System.out.println(authorizationHeader);
 
         filterChain.doFilter(request, response);
     }
