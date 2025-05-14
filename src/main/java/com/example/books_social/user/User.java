@@ -65,9 +65,11 @@ public class User implements UserDetails {
         return true;
     }
 
-    public User(UserData data) {
+    public User(){}
+
+    public User(UserData data, String encryptedPassword) {
         this.email = data.email();
-        this.password = data.password();
+        this.password = encryptedPassword;
         this.userName = data.userName();
         this.userPicture = data.userPicture();
     }

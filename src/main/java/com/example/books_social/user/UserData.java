@@ -9,7 +9,6 @@ public record UserData (
     String email,
     @NotBlank
     String password,
-    @NotBlank
     String userName,
     String userPicture
 
