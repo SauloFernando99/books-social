@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Table(name = "book")
 @Entity(name = "Book")
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)

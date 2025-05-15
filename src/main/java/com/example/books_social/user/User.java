@@ -16,7 +16,6 @@ import java.util.List;
 @Table(name = "users")
 @Entity(name = "User")
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
