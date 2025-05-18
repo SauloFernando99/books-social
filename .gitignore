@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 # Ignorar variáveis de ambiente
-/config/
+**/config/
 
 ### STS ###
 .apt_generated
