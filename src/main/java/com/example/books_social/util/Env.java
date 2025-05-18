@@ -3,7 +3,7 @@ package com.example.books_social.util;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Env {
-    private static final Dotenv dotenv = Dotenv.configure()
+    public static final Dotenv dotenv = Dotenv.configure()
             .directory("./config")
             .load();
 
