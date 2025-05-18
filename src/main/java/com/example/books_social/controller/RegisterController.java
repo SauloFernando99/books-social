@@ -25,7 +25,7 @@ public class RegisterController {
         }
 
         String encryptedPassword = passwordEncoder.encode(data.password());
-        User newUser = new User(data, encryptedPassword);
+        User newUser = new User(data.email(), encryptedPassword);
         repository.save(newUser);
 
         return ResponseEntity.ok().build();
