@@ -32,10 +32,9 @@ public class SecurityFilter extends OncePerRequestFilter {
             authorizationHeader = authorizationHeader.replace("Bearer ", "");
 
             var subject = tokenService.getSubject(authorizationHeader);
-            System.out.println(subject);
-            var usuario = userRepository.findByEmail(subject);
-            var authentication = new UsernamePasswordAuthenticationToken(usuario, null,
-                    usuario.getAuthorities());
+            var user = userRepository.findByEmail(subject);
+            var authentication = new UsernamePasswordAuthenticationToken(user, null,
+                    user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
