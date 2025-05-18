@@ -1,4 +1,4 @@
-package com.example.books_social.user;
+package com.example.books_social.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService implements UserDetailsService {
 
     @Autowired
-    private UserRepository repository;
+    private AccountRepository repository;
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {

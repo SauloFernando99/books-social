@@ -1,4 +1,4 @@
-package com.example.books_social.user;
+package com.example.books_social.account;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
@@ -14,13 +14,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Document(collection = "users")
+@Document(collection = "accounts")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class User implements UserDetails {
+public class Account implements UserDetails {
 
     @Id
     private String id;
@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-    public User(String email, String password) {
+    public Account(String email, String password) {
         this.email = email;
         this.password = password;
     }

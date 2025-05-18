@@ -5,7 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.example.books_social.user.User;
+import com.example.books_social.account.Account;
 import com.example.books_social.util.Env;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +18,12 @@ public class BooksTokenService {
 
     private final String secret = Env.get("JWT_SECRET");
 
-    public String generateToken (User user) {
+    public String generateToken (Account account) {
         try {
             var algorithm =  Algorithm.HMAC256(secret);
              String token = JWT.create()
                      .withIssuer("LORDOFTHERINGS")
-                     .withSubject(user.getUsername())
+                     .withSubject(account.getUsername())
                      .withExpiresAt(expirationDate()).sign(algorithm);
 
              return token;

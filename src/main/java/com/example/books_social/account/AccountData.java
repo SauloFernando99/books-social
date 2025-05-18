@@ -1,9 +1,9 @@
-package com.example.books_social.user;
+package com.example.books_social.account;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record UserData (
+public record AccountData(
     @NotBlank
     @Email
     String email,

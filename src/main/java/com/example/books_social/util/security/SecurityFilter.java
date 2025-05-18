@@ -1,6 +1,6 @@
 package com.example.books_social.util.security;
 
-import com.example.books_social.user.UserRepository;
+import com.example.books_social.account.AccountRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private BooksTokenService tokenService;
     @Autowired
-    private UserRepository userRepository;
+    private AccountRepository accountRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -32,7 +32,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             authorizationHeader = authorizationHeader.replace("Bearer ", "");
 
             var subject = tokenService.getSubject(authorizationHeader);
-            var user = userRepository.findByEmail(subject);
+            var user = accountRepository.findByEmail(subject);
             var authentication = new UsernamePasswordAuthenticationToken(user, null,
                     user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
