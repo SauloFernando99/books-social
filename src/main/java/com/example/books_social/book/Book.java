@@ -1,16 +1,17 @@
 package com.example.books_social.book;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Table(name = "book")
-@Entity(name = "Book")
+@Document(collection = "books")
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -18,7 +19,6 @@ import java.time.LocalDate;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String gender;
