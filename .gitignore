@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Ignorar variáveis de ambiente
+/config/
+
 ### STS ###
 .apt_generated
 .classpath
