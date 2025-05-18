@@ -1,11 +1,12 @@
 package com.example.books_social.user;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,21 +14,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Table(name = "users")
-@Entity(name = "User")
+@Document(collection = "users")
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
+
     private String email;
     private String password;
-    private String userName;
-    private String userPicture;
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,7 +47,7 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
-    // TODO verify account related details
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -62,14 +66,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public User(){}
-
-    public User(UserData data, String encryptedPassword) {
-        this.email = data.email();
-        this.password = encryptedPassword;
-        this.userName = data.userName();
-        this.userPicture = data.userPicture();
     }
 }

@@ -8,9 +8,7 @@ public record UserData (
     @Email
     String email,
     @NotBlank
-    String password,
-    String userName,
-    String userPicture
+    String password
 
 ){
 }
