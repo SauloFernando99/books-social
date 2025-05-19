@@ -1,6 +1,6 @@
 package com.example.books_social;
 
-import com.example.books_social.util.Env;
+import com.example.books_social.infrastructure.configuration.Env;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

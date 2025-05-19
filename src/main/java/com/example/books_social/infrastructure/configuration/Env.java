@@ -1,4 +1,4 @@
-package com.example.books_social.util;
+package com.example.books_social.infrastructure.configuration;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
