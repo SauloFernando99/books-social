@@ -1,4 +1,4 @@
-package com.example.books_social.account;
+package com.example.books_social.infrastructure.security;
 
 import com.example.books_social.infrastructure.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
