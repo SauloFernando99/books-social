@@ -21,13 +21,14 @@ public class Book {
     @Id
     private Long id;
     private String title;
-    private String gender;
-    private LocalDate date;
-    private LocalDate finished;
+    private String author;
+    private String genre;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String review;
     private String favoriteCharacter;
-    private  String assessment;
-    private String cover;
+    private int rating;
+    private String coverUrl;
     private int numberPages;
     private String readingStatus;
     private String bookType;
@@ -36,13 +37,14 @@ public class Book {
 
     public Book(BookDto data){
         this.title = data.title();
-        this.gender = data.gender();
-        this.date = data.date();
-        this.finished = data.finished();
+        this.author = data.author();
+        this.genre = data.gender();
+        this.startDate = data.startDate();
+        this.endDate = data.endDate();
         this.review = data.review();
         this.favoriteCharacter = data.favoriteCharacter();;
-        this.assessment = data.assessment();
-        this.cover = data.cover();
+        this.rating = data.rating();
+        this.coverUrl = data.cover();
         this.numberPages = data.numberPages();;
         this.readingStatus = data.readingStatus();
         this.bookType = data.bookType();

@@ -11,11 +11,14 @@ public record BookDto(
         String title,
         @NotNull
         @NotBlank
+        String author,
+        @NotNull
+        @NotBlank
         String gender,
         @NotNull
-        LocalDate date,
+        LocalDate startDate,
         @NotNull
-        LocalDate finished,
+        LocalDate endDate,
         @NotNull
         @NotBlank
         String review,
@@ -23,8 +26,7 @@ public record BookDto(
         @NotBlank
         String favoriteCharacter,
         @NotNull
-        @NotBlank
-        String assessment,
+        int rating,
         @NotNull
         @NotBlank
         String cover,
