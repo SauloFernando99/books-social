@@ -1,7 +1,7 @@
 package com.example.books_social.controller;
 
 import com.example.books_social.domain.model.account.Account;
-import com.example.books_social.application.account.AccountData;
+import com.example.books_social.application.account.AccountDto;
 import com.example.books_social.util.security.BooksTokenService;
 import com.example.books_social.util.security.JwtTokenData;
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ public class AuthenticationController {
     private BooksTokenService tokenService;
 
     @PostMapping
-    public ResponseEntity signIn(@RequestBody @Valid AccountData data){
+    public ResponseEntity signIn(@RequestBody @Valid AccountDto data){
         var token = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var authentication = manager.authenticate(token);
         var jwtToken = tokenService.generateToken((Account) authentication.getPrincipal());

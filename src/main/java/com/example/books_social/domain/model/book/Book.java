@@ -1,6 +1,6 @@
 package com.example.books_social.domain.model.book;
 
-import com.example.books_social.application.book.BookData;
+import com.example.books_social.application.book.BookDto;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 //import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,7 +34,7 @@ public class Book {
 
     public Book(){}
 
-    public Book(BookData data){
+    public Book(BookDto data){
         this.title = data.title();
         this.gender = data.gender();
         this.date = data.date();

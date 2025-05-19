@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public record BookData(
+public record BookDto(
         @NotNull
         @NotBlank
         String title,

@@ -1,7 +1,7 @@
 package com.example.books_social.controller;
 
 import com.example.books_social.domain.model.book.Book;
-import com.example.books_social.application.book.BookData;
+import com.example.books_social.application.book.BookDto;
 import com.example.books_social.infrastructure.book.BookRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class BooksController {
     @Autowired
     private BookRepository repository;
     @PostMapping
-    public void register(@RequestBody @Valid BookData data){
+    public void register(@RequestBody @Valid BookDto data){
         repository.save(new Book(data));
     }
 

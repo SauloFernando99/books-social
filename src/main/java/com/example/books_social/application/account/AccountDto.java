@@ -3,7 +3,7 @@ package com.example.books_social.application.account;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record AccountData(
+public record AccountDto(
     @NotBlank
     @Email
     String email,

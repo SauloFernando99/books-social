@@ -1,7 +1,7 @@
 package com.example.books_social.controller;
 
 import com.example.books_social.domain.model.account.Account;
-import com.example.books_social.application.account.AccountData;
+import com.example.books_social.application.account.AccountDto;
 import com.example.books_social.infrastructure.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class RegisterController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping
-    public ResponseEntity register(@RequestBody AccountData data) {
+    public ResponseEntity register(@RequestBody AccountDto data) {
         if (repository.existsByEmail(data.email())) {
             return ResponseEntity.badRequest().body("Email already in use");
         }
