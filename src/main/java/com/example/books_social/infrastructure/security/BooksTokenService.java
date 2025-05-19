@@ -1,4 +1,4 @@
-package com.example.books_social.util.security;
+package com.example.books_social.infrastructure.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

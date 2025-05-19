@@ -1,4 +1,4 @@
-package com.example.books_social.util.security;
+package com.example.books_social.infrastructure.security;
 
 import com.example.books_social.infrastructure.account.AccountRepository;
 import jakarta.servlet.FilterChain;

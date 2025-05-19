@@ -2,8 +2,8 @@ package com.example.books_social.controller;
 
 import com.example.books_social.domain.model.account.Account;
 import com.example.books_social.application.account.AccountDto;
-import com.example.books_social.util.security.BooksTokenService;
-import com.example.books_social.util.security.JwtTokenData;
+import com.example.books_social.infrastructure.security.BooksTokenService;
+import com.example.books_social.infrastructure.security.JwtTokenData;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
