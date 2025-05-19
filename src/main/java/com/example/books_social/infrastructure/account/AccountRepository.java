@@ -1,4 +1,4 @@
-package com.example.books_social.account;
+package com.example.books_social.infrastructure.account;
 
 import com.example.books_social.domain.model.account.Account;
 import org.springframework.data.mongodb.repository.MongoRepository;

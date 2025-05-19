@@ -1,6 +1,6 @@
 package com.example.books_social.util.security;
 
-import com.example.books_social.account.AccountRepository;
+import com.example.books_social.infrastructure.account.AccountRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
