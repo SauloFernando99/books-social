@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Account implements UserDetails {
     private String id;
     private String email;
     private String password;
-    private final LocalDate creationDate = LocalDate.now();
+    private final LocalDateTime creationDate = LocalDateTime.now();
 
     public Account(String email, String password) {
         this.email = email;
