@@ -1,4 +1,4 @@
-package com.example.books_social.account;
+package com.example.books_social.domain.model.account;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
@@ -25,9 +25,9 @@ public class Account implements UserDetails {
 
     @Id
     private String id;
-    private String email;
-    private String password;
-    private LocalDate creationDate = LocalDate.now();
+    private final String email;
+    private final String password;
+    private final LocalDate creationDate = LocalDate.now();
 
     public Account(String email, String password) {
         this.email = email;

@@ -1,6 +1,6 @@
 package com.example.books_social.controller;
 
-import com.example.books_social.account.Account;
+import com.example.books_social.domain.model.account.Account;
 import com.example.books_social.account.AccountData;
 import com.example.books_social.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;

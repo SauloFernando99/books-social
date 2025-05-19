@@ -1,6 +1,6 @@
 package com.example.books_social.controller;
 
-import com.example.books_social.account.Account;
+import com.example.books_social.domain.model.account.Account;
 import com.example.books_social.account.AccountData;
 import com.example.books_social.util.security.BooksTokenService;
 import com.example.books_social.util.security.JwtTokenData;
