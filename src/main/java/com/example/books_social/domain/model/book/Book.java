@@ -1,5 +1,6 @@
-package com.example.books_social.book;
+package com.example.books_social.domain.model.book;
 
+import com.example.books_social.book.BookData;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 //import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
