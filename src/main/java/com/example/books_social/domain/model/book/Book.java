@@ -1,12 +1,11 @@
 package com.example.books_social.domain.model.book;
 
-import com.example.books_social.book.BookData;
+import com.example.books_social.application.book.BookData;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 //import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

@@ -1,4 +1,4 @@
-package com.example.books_social.book;
+package com.example.books_social.application.book;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

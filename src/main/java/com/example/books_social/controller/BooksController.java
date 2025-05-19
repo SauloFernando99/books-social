@@ -1,7 +1,7 @@
 package com.example.books_social.controller;
 
 import com.example.books_social.domain.model.book.Book;
-import com.example.books_social.book.BookData;
+import com.example.books_social.application.book.BookData;
 import com.example.books_social.infrastructure.book.BookRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.example.books_social.account;
+package com.example.books_social.application.account;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
