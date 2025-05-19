@@ -25,8 +25,8 @@ public class Account implements UserDetails {
 
     @Id
     private String id;
-    private final String email;
-    private final String password;
+    private String email;
+    private String password;
     private final LocalDate creationDate = LocalDate.now();
 
     public Account(String email, String password) {
