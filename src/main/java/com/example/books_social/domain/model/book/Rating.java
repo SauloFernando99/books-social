@@ -12,7 +12,7 @@ public class Rating extends ValueObject {
         this.value = value;
 
         Notification notification = validate();
-        if (notification.hasNoErrors()) {
+        if (!notification.hasNoErrors()) {
             throw new IllegalArgumentException(notification.message());
         }
     }

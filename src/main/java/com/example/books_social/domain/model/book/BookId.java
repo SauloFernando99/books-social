@@ -11,7 +11,7 @@ public class BookId implements Identifier<Long> {
 
     public BookId(UUID value) {
         Notification notification = validate(value);
-        if (notification.hasNoErrors()) {
+        if (!notification.hasNoErrors()) {
             throw new IllegalArgumentException(notification.message());
         }
         this.value = value;
