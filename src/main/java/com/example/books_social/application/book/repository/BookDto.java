@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,5 +23,6 @@ public record BookDto(
         @NotNull Integer numberPages,
         @NotNull @NotBlank String readingStatus,
         @NotNull List<@NotBlank String> bookTypes,
-        boolean isFavorite
+        boolean isFavorite,
+        LocalDateTime createdAt
 ) {}

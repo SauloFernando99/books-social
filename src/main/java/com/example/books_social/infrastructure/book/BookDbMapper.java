@@ -19,7 +19,8 @@ public class BookDbMapper {
             dto.numberPages(),
             dto.readingStatus(),
             dto.bookTypes(),
-            dto.isFavorite()
+            dto.isFavorite(),
+            dto.createdAt()
         );
     }
 
@@ -39,7 +40,8 @@ public class BookDbMapper {
             document.getNumberPages(),
             document.getReadingStatus(),
             document.getBookTypes(),
-            document.isFavorite()
+            document.isFavorite(),
+            document.getCreatedAt()
         );
     }
 

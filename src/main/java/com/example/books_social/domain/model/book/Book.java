@@ -4,6 +4,7 @@ import com.example.books_social.domain.shared.ddd.Notification;
 //import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ public class Book {
     private ReadingStatus readingStatus;
     private List<BookType> bookTypes;
     private boolean isFavorite;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public Book(
             BookId bookId,
@@ -41,7 +43,8 @@ public class Book {
             NumberPages numberPages,
             ReadingStatus readingStatus,
             List<BookType> bookTypes,
-            boolean isFavorite
+            boolean isFavorite,
+            LocalDateTime createdAt
     ) {
         this.bookId = bookId;
         this.ownerId = ownerId;
@@ -58,6 +61,7 @@ public class Book {
         this.readingStatus = readingStatus;
         this.bookTypes = bookTypes;
         this.isFavorite = isFavorite;
+        this.createdAt = createdAt;
 
         Notification notification = validate();
         if (!notification.hasNoErrors()) {

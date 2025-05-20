@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ public class BookDocument {
     private String readingStatus;
     private List<String> bookTypes;
     private boolean isFavorite;
+    private LocalDateTime createdAt;
 
     public BookDocument() {}
 
@@ -48,7 +50,8 @@ public class BookDocument {
             int numberPages,
             String readingStatus,
             List<String> bookTypes,
-            boolean isFavorite
+            boolean isFavorite,
+            LocalDateTime createdAt
     ) {
         this.id = UUID.randomUUID();
         this.ownerId = ownerId;
@@ -65,6 +68,7 @@ public class BookDocument {
         this.readingStatus = readingStatus;
         this.bookTypes = bookTypes;
         this.isFavorite = isFavorite;
+        this.createdAt = createdAt;
     }
 
     public UUID getId() {
@@ -185,6 +189,13 @@ public class BookDocument {
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt;
     }
 }
 
