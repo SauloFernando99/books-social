@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public record BookDto(
         UUID bookId,
-        @NotNull @NotBlank UUID ownerId,
+        @NotNull UUID ownerId,
         @NotNull @NotBlank String title,
         @NotNull @NotBlank String author,
         @NotNull @NotBlank String genre,
@@ -21,6 +21,6 @@ public record BookDto(
         @NotNull @NotBlank String coverUrl,
         @NotNull Integer numberPages,
         @NotNull @NotBlank String readingStatus,
-        @NotNull List<@NotBlank String> bookType,
+        @NotNull List<@NotBlank String> bookTypes,
         boolean isFavorite
 ) {}
