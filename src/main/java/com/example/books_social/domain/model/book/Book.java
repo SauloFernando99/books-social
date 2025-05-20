@@ -1,52 +1,76 @@
 package com.example.books_social.domain.model.book;
 
-import com.example.books_social.application.book.BookDto;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.example.books_social.domain.shared.ddd.Notification;
 //import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
 
-@Document(collection = "books")
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+
 public class Book {
 
-    @Id
-    private Long id;
+    private BookId bookId;
+    private UUID ownerId;
     private String title;
     private String author;
-    private String genre;
+    private Genre genre;
     private LocalDate startDate;
     private LocalDate endDate;
     private String review;
     private String favoriteCharacter;
-    private int rating;
-    private String coverUrl;
-    private int numberPages;
-    private String readingStatus;
-    private String bookType;
+    private Rating rating;
+    private CoverUrl coverUrl;
+    private NumberPages numberPages;
+    private ReadingStatus readingStatus;
+    private List<BookType> bookTypes;
+    private boolean isFavorite;
 
-    public Book(){}
+    public Book(
+            BookId bookId,
+            UUID ownerId,
+            String title,
+            String author,
+            Genre genre,
+            LocalDate startDate,
+            LocalDate endDate,
+            String review,
+            String favoriteCharacter,
+            Rating rating,
+            CoverUrl coverUrl,
+            NumberPages numberPages,
+            ReadingStatus readingStatus,
+            List<BookType> bookTypes,
+            boolean isFavorite
+    ) {
+        this.bookId = bookId;
+        this.ownerId = ownerId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.review = review;
+        this.favoriteCharacter = favoriteCharacter;
+        this.rating = rating;
+        this.coverUrl = coverUrl;
+        this.numberPages = numberPages;
+        this.readingStatus = readingStatus;
+        this.bookTypes = bookTypes;
+        this.isFavorite = isFavorite;
 
-    public Book(BookDto data){
-        this.title = data.title();
-        this.author = data.author();
-        this.genre = data.gender();
-        this.startDate = data.startDate();
-        this.endDate = data.endDate();
-        this.review = data.review();
-        this.favoriteCharacter = data.favoriteCharacter();;
-        this.rating = data.rating();
-        this.coverUrl = data.cover();
-        this.numberPages = data.numberPages();;
-        this.readingStatus = data.readingStatus();
-        this.bookType = data.bookType();
+        Notification notification = validate();
+        if (!notification.hasNoErrors()) {
+            throw new IllegalArgumentException(notification.message());
+        }
+    }
+
+    private Notification validate() {
+        Notification notification = new Notification();
+
+        if (author == null || author.isBlank()) { notification.addError("Author is required."); }
+        if (title == null || title.isBlank()) { notification.addError("Title is required."); }
+
+        return notification;
     }
 }
