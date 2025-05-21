@@ -77,4 +77,132 @@ public class Book {
 
         return notification;
     }
+
+    public BookId getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(BookId bookId) {
+        this.bookId = bookId;
+    }
+
+    public UUID getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(UUID ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public String getFavoriteCharacter() {
+        return favoriteCharacter;
+    }
+
+    public void setFavoriteCharacter(String favoriteCharacter) {
+        this.favoriteCharacter = favoriteCharacter;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public CoverUrl getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(CoverUrl coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public NumberPages getNumberPages() {
+        return numberPages;
+    }
+
+    public void setNumberPages(NumberPages numberPages) {
+        this.numberPages = numberPages;
+    }
+
+    public ReadingStatus getReadingStatus() {
+        return readingStatus;
+    }
+
+    public void setReadingStatus(ReadingStatus readingStatus) {
+        this.readingStatus = readingStatus;
+    }
+
+    public List<BookType> getBookTypes() {
+        return bookTypes;
+    }
+
+    public void setBookTypes(List<BookType> bookTypes) {
+        this.bookTypes = bookTypes;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

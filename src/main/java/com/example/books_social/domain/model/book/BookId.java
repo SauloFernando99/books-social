@@ -46,4 +46,8 @@ public class BookId implements Identifier<Long> {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public UUID getValue() {
+        return value;
+    }
 }
