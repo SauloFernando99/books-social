@@ -1,6 +1,7 @@
 package com.example.books_social.infrastructure.book;
 
 import com.example.books_social.application.book.repository.BookDto;
+import com.example.books_social.application.book.repository.BookRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,30 +15,27 @@ import java.util.UUID;
 @RequestMapping("book")
 public class BooksController {
     @Autowired
-    private MongoBookRepository repository;
+    private BookRepository repository;
 
     @PostMapping
     public void register(@RequestBody @Valid BookDto data){
-
-        BookDocument document = BookDbMapper.toDocument(data);
-
-        repository.save(document);
+        repository.create(data);
     }
 
-    @GetMapping
-    public List<BookDocument> list() {
-        return repository.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<BookDocument> getBookById(@PathVariable UUID id) {
-        Optional<BookDocument> bookOptional = repository.findById(id);
-
-        if (bookOptional.isPresent()) {
-            BookDocument book = bookOptional.get();
-            return ResponseEntity.ok(book);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @GetMapping
+//    public List<BookDocument> list() {
+//        return repository.findAll();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<BookDocument> getBookById(@PathVariable UUID id) {
+//        Optional<BookDocument> bookOptional = repository.findById(id);
+//
+//        if (bookOptional.isPresent()) {
+//            BookDocument book = bookOptional.get();
+//            return ResponseEntity.ok(book);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 }
