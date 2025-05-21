@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface CreateBookService {
     void createBook(
-        CreateBookPresenter,
+        CreateBookPresenter createBookPresenter,
         RequestModel request
     );
 
