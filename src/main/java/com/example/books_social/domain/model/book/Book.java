@@ -69,6 +69,46 @@ public class Book {
         }
     }
 
+    public Book(
+            BookId bookId,
+            UUID ownerId,
+            String title,
+            String author,
+            Genre genre,
+            LocalDate startDate,
+            LocalDate endDate,
+            String review,
+            String favoriteCharacter,
+            Rating rating,
+            CoverUrl coverUrl,
+            NumberPages numberPages,
+            ReadingStatus readingStatus,
+            List<BookType> bookTypes,
+            boolean isFavorite
+    ) {
+        this.bookId = bookId;
+        this.ownerId = ownerId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.review = review;
+        this.favoriteCharacter = favoriteCharacter;
+        this.rating = rating;
+        this.coverUrl = coverUrl;
+        this.numberPages = numberPages;
+        this.readingStatus = readingStatus;
+        this.bookTypes = bookTypes;
+        this.isFavorite = isFavorite;
+
+        Notification notification = validate();
+        if (!notification.hasNoErrors()) {
+            throw new IllegalArgumentException(notification.message());
+        }
+    }
+
+
     private Notification validate() {
         Notification notification = new Notification();
 
