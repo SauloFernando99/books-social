@@ -15,6 +15,6 @@ public class FindAllBooksServiceImpl implements FindAllBooksService{
 
     @Override
     public void findAllByOwner(FindAllBooksPresenter presenter, UUID ownerId) {
-        bookRepository.findAllBooksByOwner(ownerId);
+        bookRepository.findAllBooksByOwnerId(ownerId);
     }
 }
