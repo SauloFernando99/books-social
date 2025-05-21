@@ -2,7 +2,7 @@ package com.example.books_social.application.book.create;
 
 import com.example.books_social.application.book.repository.BookMapper;
 import com.example.books_social.application.book.repository.BookRepository;
-import com.example.books_social.domain.service.UuidGeneratorService;
+import com.example.books_social.domain.services.UuidGeneratorService;
 import com.example.books_social.domain.model.book.Book;
 import com.example.books_social.domain.model.book.BookId;
 

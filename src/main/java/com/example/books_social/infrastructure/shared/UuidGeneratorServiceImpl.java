@@ -1,6 +1,6 @@
 package com.example.books_social.infrastructure.shared;
 
-import com.example.books_social.domain.service.UuidGeneratorService;
+import com.example.books_social.domain.services.UuidGeneratorService;
 
 import java.util.UUID;
 

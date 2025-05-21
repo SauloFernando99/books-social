@@ -1,4 +1,4 @@
-package com.example.books_social.domain.service;
+package com.example.books_social.domain.services;
 
 import java.util.UUID;
 
