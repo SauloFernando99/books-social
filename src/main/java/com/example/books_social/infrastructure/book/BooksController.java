@@ -14,7 +14,7 @@ import java.util.UUID;
 @RequestMapping("book")
 public class BooksController {
     @Autowired
-    private BookRepository repository;
+    private MongoBookRepository repository;
 
     @PostMapping
     public void register(@RequestBody @Valid BookDto data){
