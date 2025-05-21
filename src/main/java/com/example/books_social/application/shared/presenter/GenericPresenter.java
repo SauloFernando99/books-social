@@ -1,4 +1,4 @@
-package com.example.books_social.application.shared;
+package com.example.books_social.application.shared.presenter;
 
 public interface GenericPresenter<T> {
     void prepareSuccessView(T response);
