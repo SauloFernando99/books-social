@@ -3,16 +3,11 @@ package com.example.books_social.presentation.book.controller;
 import com.example.books_social.application.book.create.CreateBookService.RequestModel;
 import com.example.books_social.application.book.create.CreateBookServiceImpl;
 import com.example.books_social.presentation.book.presenter.RestfulCreateBookPresenter;
+import com.example.books_social.presentation.book.requests.PostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 
 @RestController
 @RequestMapping("api/v1/book")
@@ -26,42 +21,27 @@ public class BooksController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createBook(@RequestBody Map<String, Object> jsonData) {
+    public ResponseEntity<?> createBook(@RequestBody PostRequest request) {
         RestfulCreateBookPresenter presenter = new RestfulCreateBookPresenter();
 
-        UUID ownerId = UUID.fromString((String) jsonData.get("ownerId"));
-        String title = (String) jsonData.get("title");
-        String author = (String) jsonData.get("author");
-        String genre = (String) jsonData.get("genre");
-        LocalDate startDate = LocalDate.parse((String) jsonData.get("startDate"));
-        LocalDate endDate = LocalDate.parse((String) jsonData.get("endDate"));
-        String review = (String) jsonData.get("review");
-        String favoriteCharacter = (String) jsonData.get("favoriteCharacter");
-        Integer rating = (Integer) jsonData.get("rating");
-        String coverUrl = (String) jsonData.get("coverUrl");
-        Integer numberPages = (Integer) jsonData.get("numberPages");
-        String readingStatus = (String) jsonData.get("readingStatus");
-        List<String> bookTypes = (List<String>) jsonData.get("bookTypes");
-        boolean isFavorite = (boolean) jsonData.get("isFavorite");
-
-        RequestModel request = new RequestModel(
-                ownerId,
-                title,
-                author,
-                genre,
-                startDate,
-                endDate,
-                review,
-                favoriteCharacter,
-                rating,
-                coverUrl,
-                numberPages,
-                readingStatus,
-                bookTypes,
-                isFavorite
+        RequestModel model = new RequestModel(
+                request.ownerId(),
+                request.title(),
+                request.author(),
+                request.genre(),
+                request.startDate(),
+                request.endDate(),
+                request.review(),
+                request.favoriteCharacter(),
+                request.rating(),
+                request.coverUrl(),
+                request.numberPages(),
+                request.readingStatus(),
+                request.bookTypes(),
+                request.isFavorite()
         );
 
-        createBookService.createBook(presenter, request);
+        createBookService.createBook(presenter, model);
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
