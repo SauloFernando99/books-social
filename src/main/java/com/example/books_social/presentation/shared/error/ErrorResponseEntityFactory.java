@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.NoSuchElementException;
 
-public class ErrorResponseFactory {
+public class ErrorResponseEntityFactory {
 
     public static ResponseEntity<ErrorMessage> createErrorResponseFrom(Throwable throwable) {
         HttpStatus httpStatus;
