@@ -1,4 +1,4 @@
-package com.example.books_social.presentation.book;
+package com.example.books_social.presentation.book.controller;
 
 import com.example.books_social.application.book.repository.BookDto;
 import com.example.books_social.application.book.repository.BookRepository;
