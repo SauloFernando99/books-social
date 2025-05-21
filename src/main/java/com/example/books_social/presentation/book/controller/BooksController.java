@@ -58,7 +58,7 @@ public class BooksController {
     }
 
 
-    @GetMapping("/{ownerID}")
+    @GetMapping("/{ownerId}")
     public ResponseEntity<?> findAllBooks(@PathVariable UUID ownerId) {
         RestfulFindAllBooksPresenter presenter = new RestfulFindAllBooksPresenter();
         findAllBooksService.findAllByOwner(presenter, ownerId);
