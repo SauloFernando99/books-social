@@ -10,9 +10,9 @@ public class CreateBookServiceImpl implements CreateBookService {
     private final BookRepository bookRepository;
     private final UuidGeneratorService uuidGeneratorService;
 
-    CreateBookServiceImpl(
-      BookRepository bookRepository,
-      UuidGeneratorService uuidGeneratorService
+    public CreateBookServiceImpl(
+            BookRepository bookRepository,
+            UuidGeneratorService uuidGeneratorService
     ) {
         this.bookRepository = bookRepository;
         this.uuidGeneratorService = uuidGeneratorService;
