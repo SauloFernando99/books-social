@@ -2,22 +2,31 @@ package com.example.books_social.presentation.book.controller;
 
 import com.example.books_social.application.book.create.CreateBookService.RequestModel;
 import com.example.books_social.application.book.create.CreateBookServiceImpl;
+import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
 import com.example.books_social.presentation.book.presenter.RestfulCreateBookPresenter;
+import com.example.books_social.presentation.book.presenter.RestfulFindAllBooksPresenter;
 import com.example.books_social.presentation.book.requests.PostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/v1/book")
 public class BooksController {
 
     private final CreateBookServiceImpl createBookService;
+    private final FindAllBooksServiceImpl findAllBooksService;
 
     @Autowired
-    public BooksController(CreateBookServiceImpl createBookService) {
+    public BooksController(
+        CreateBookServiceImpl createBookService,
+        FindAllBooksServiceImpl findAllBooksService
+        ) {
         this.createBookService = createBookService;
+        this.findAllBooksService = findAllBooksService;
     }
 
     @PostMapping
@@ -49,10 +58,15 @@ public class BooksController {
     }
 
 
-//    @GetMapping
-//    public List<BookDocument> list() {
-//        return repository.findAll();
-//    }
+    @GetMapping("/{ownerID}")
+    public ResponseEntity<?> findAllBooks(@PathVariable UUID ownerId) {
+        RestfulFindAllBooksPresenter presenter = new RestfulFindAllBooksPresenter();
+        findAllBooksService.findAllByOwner(presenter, ownerId);
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 //
 //    @GetMapping("/{id}")
 //    public ResponseEntity<BookDocument> getBookById(@PathVariable UUID id) {
