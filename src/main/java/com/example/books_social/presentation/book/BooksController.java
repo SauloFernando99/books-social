@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("book")
+@RequestMapping("api/v1/book")
 public class BooksController {
     @Autowired
     private BookRepository repository;
