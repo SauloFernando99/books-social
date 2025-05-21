@@ -1,5 +1,6 @@
 package com.example.books_social.application.book.repository;
 
+import com.example.books_social.application.book.create.CreateBookService;
 import com.example.books_social.domain.model.book.*;
 
 import java.util.Collections;
@@ -50,6 +51,29 @@ public class BookMapper {
             book.getBookTypes().stream().map(Enum::name).toList(),
             book.isFavorite(),
             book.getCreatedAt()
+        );
+    }
+
+    public static Book fromRequestModel(BookId bookId, CreateBookService.RequestModel requestModel) {
+        Genre genre = Genre.valueOf(requestModel.genre());
+        ReadingStatus readingStatus = ReadingStatus.valueOf(requestModel.readingStatus());
+        List<BookType> bookTypes = parseBookTypes(requestModel.bookTypes());
+        return new Book(
+            bookId,
+            requestModel.ownerId(),
+            requestModel.title(),
+            requestModel.author(),
+            genre,
+            requestModel.startDate(),
+            requestModel.endDate(),
+            requestModel.review(),
+            requestModel.favoriteCharacter(),
+            new Rating(requestModel.rating()),
+            new CoverUrl(requestModel.coverUrl()),
+            new NumberPages(requestModel.numberPages()),
+            readingStatus,
+            bookTypes,
+            requestModel.isFavorite()
         );
     }
 
