@@ -1,4 +1,7 @@
-package com.example.books_social.application.book.update;
+package com.example.books_social.application.book.update.presenter;
 
-public interface UpdateBookPresenter {
+import com.example.books_social.application.book.update.service.UpdateBookService;
+import com.example.books_social.application.shared.presenter.GenericPresenter;
+
+public interface UpdateBookPresenter extends GenericPresenter<UpdateBookService.ResponseModel> {
 }
