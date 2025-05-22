@@ -36,4 +36,10 @@ public class BookRepositoryImpl implements BookRepository {
                 .orElse(null);
     }
 
+    @Override
+    public void saveOrUpdate(BookDto dto) {
+        BookDocument document = BookDbMapper.toDocument(dto);
+        innerRepository.save(document);
+    }
+
 }
