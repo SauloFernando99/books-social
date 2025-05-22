@@ -30,4 +30,10 @@ public class BookRepositoryImpl implements BookRepository {
         return innerRepository.findAllBooksByOwnerId(ownerId).stream().map(BookDbMapper::toDto).collect(Collectors.toList());
     }
 
+    @Override
+    public BookDto findById(UUID bookId) {
+        return innerRepository.findById(bookId).map(BookDbMapper::toDto)
+                .orElse(null);
+    }
+
 }
