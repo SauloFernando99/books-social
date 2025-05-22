@@ -2,6 +2,7 @@ package com.example.books_social.presentation.book.controller;
 
 import com.example.books_social.application.book.create.CreateBookService.RequestModel;
 import com.example.books_social.application.book.create.CreateBookServiceImpl;
+import com.example.books_social.application.book.find.services.FindAllBooksService;
 import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
 import com.example.books_social.presentation.book.presenter.RestfulCreateBookPresenter;
 import com.example.books_social.presentation.book.presenter.RestfulFindAllBooksPresenter;
@@ -61,7 +62,9 @@ public class BooksController {
     @GetMapping("/{ownerId}")
     public ResponseEntity<?> findAllBooks(@PathVariable UUID ownerId) {
         RestfulFindAllBooksPresenter presenter = new RestfulFindAllBooksPresenter();
-        findAllBooksService.findAllByOwner(presenter, ownerId);
+        FindAllBooksService.RequestModel request = new FindAllBooksService.RequestModel(ownerId);
+
+        findAllBooksService.findAllByOwner(presenter, request);
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()

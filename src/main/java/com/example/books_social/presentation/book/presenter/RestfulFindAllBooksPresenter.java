@@ -19,6 +19,7 @@ public class RestfulFindAllBooksPresenter implements FindAllBooksPresenter {
 
     @Override
     public void prepareSuccessView(FindAllBooksService.ResponseModel response) {
+        System.out.println(response.ownerId());
         ViewModel restfulResponse = new ViewModel(response.ownerId(), response.books());
 
         responseEntity = ResponseEntity.status(HttpStatus.OK).body(restfulResponse);
@@ -45,6 +46,14 @@ public class RestfulFindAllBooksPresenter implements FindAllBooksPresenter {
         private ViewModel(UUID ownerId, List<BookDto> books) {
             this.ownerId = ownerId;
             this.books = books;
+        }
+
+        public UUID getOwnerId() {
+            return ownerId;
+        }
+
+        public List<BookDto> getBooks() {
+            return books;
         }
     }
 }

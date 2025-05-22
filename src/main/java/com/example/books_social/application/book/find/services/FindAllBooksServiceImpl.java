@@ -5,7 +5,6 @@ import com.example.books_social.application.book.repository.BookDto;
 import com.example.books_social.application.book.repository.BookRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 public class FindAllBooksServiceImpl implements FindAllBooksService{
 
@@ -16,10 +15,12 @@ public class FindAllBooksServiceImpl implements FindAllBooksService{
     }
 
     @Override
-    public void findAllByOwner(FindAllBooksPresenter presenter, UUID ownerId) {
-        List<BookDto> books = bookRepository.findAllBooksByOwnerId(ownerId);
+    public void findAllByOwner(FindAllBooksPresenter presenter, RequestModel request) {
+        List<BookDto> books = bookRepository.findAllBooksByOwner(request.ownerId());
 
-        ResponseModel response = new ResponseModel(ownerId, books);
+        System.out.println(books);
+
+        ResponseModel response = new ResponseModel(request.ownerId(), books);
 
         presenter.prepareSuccessView(response);
     }

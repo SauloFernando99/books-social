@@ -25,7 +25,8 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public List<BookDto> findAllBooksByOwnerId(UUID ownerId) {
+    public List<BookDto> findAllBooksByOwner(UUID ownerId) {
+        System.out.println(ownerId);
         return innerRepository.findAllBooksByOwnerIdContaining(ownerId).stream().map(BookDbMapper::toDto).collect(Collectors.toList());
     }
 

@@ -5,5 +5,5 @@ import java.util.UUID;
 
 public interface BookRepository {
     void create(BookDto dto);
-    List<BookDto> findAllBooksByOwnerId(UUID ownerId);
+    List<BookDto> findAllBooksByOwner(UUID ownerId);
 }

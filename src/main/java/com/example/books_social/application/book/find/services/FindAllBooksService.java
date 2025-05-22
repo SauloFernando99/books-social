@@ -8,9 +8,9 @@ import java.util.UUID;
 
 public interface FindAllBooksService {
 
-    void findAllByOwner(FindAllBooksPresenter presenter, UUID ownerId);
+    void findAllByOwner(FindAllBooksPresenter presenter, RequestModel request);
 
-    public record RequestModel(UUID owner) {}
+    public record RequestModel(UUID ownerId) {}
 
     public record ResponseModel(UUID ownerId, List<BookDto> books) {}
 
