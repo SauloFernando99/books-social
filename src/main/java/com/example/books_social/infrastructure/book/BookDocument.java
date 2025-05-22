@@ -53,7 +53,7 @@ public class BookDocument {
             boolean isFavorite,
             LocalDateTime createdAt
     ) {
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.ownerId = ownerId;
         this.title = title;
         this.author = author;
