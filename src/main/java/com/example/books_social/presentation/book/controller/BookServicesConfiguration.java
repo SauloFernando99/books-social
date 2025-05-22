@@ -2,6 +2,7 @@ package com.example.books_social.presentation.book.controller;
 
 import com.example.books_social.application.book.create.CreateBookServiceImpl;
 import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
+import com.example.books_social.application.book.find.services.FindBookServiceImpl;
 import com.example.books_social.application.book.repository.BookRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import org.springframework.context.annotation.Bean;
@@ -26,5 +27,12 @@ public class BookServicesConfiguration {
         BookRepository bookRepository
     ) {
         return new FindAllBooksServiceImpl(bookRepository);
+    }
+
+    @Bean
+    public FindBookServiceImpl findBookService(
+            BookRepository bookRepository
+    ) {
+        return new FindBookServiceImpl(bookRepository);
     }
 }
