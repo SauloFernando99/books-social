@@ -25,7 +25,7 @@ public class FindBookServiceImpl implements FindBookService{
             return;
         }
 
-        FindBookService.ResponseModel response = new FindBookService.ResponseModel(request.ownerId(), book);
+        FindBookService.ResponseModel response = new FindBookService.ResponseModel(book);
 
         presenter.prepareSuccessView(response);
     }

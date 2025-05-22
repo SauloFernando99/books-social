@@ -4,8 +4,10 @@ import com.example.books_social.application.book.create.CreateBookService.Reques
 import com.example.books_social.application.book.create.CreateBookServiceImpl;
 import com.example.books_social.application.book.find.services.FindAllBooksService;
 import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
+import com.example.books_social.application.book.find.services.FindBookService;
 import com.example.books_social.presentation.book.presenter.RestfulCreateBookPresenter;
 import com.example.books_social.presentation.book.presenter.RestfulFindAllBooksPresenter;
+import com.example.books_social.presentation.book.presenter.RestfulFindBookPresenter;
 import com.example.books_social.presentation.book.requests.PostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -70,16 +72,10 @@ public class BooksController {
                 ? presenter.getResponseEntity()
                 : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<BookDocument> getBookById(@PathVariable UUID id) {
-//        Optional<BookDocument> bookOptional = repository.findById(id);
-//
-//        if (bookOptional.isPresent()) {
-//            BookDocument book = bookOptional.get();
-//            return ResponseEntity.ok(book);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+
+    @GetMapping("/{bookId}")
+    public ResponseEntity<?> findBook(@PathVariable UUID bookId) {
+        RestfulFindBookPresenter presenter = new RestfulFindBookPresenter();
+        FindBookService.RequestModel request = new FindBookService.RequestModel(bookId);
+    }
 }

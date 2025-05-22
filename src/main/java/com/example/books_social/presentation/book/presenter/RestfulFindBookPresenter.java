@@ -19,7 +19,7 @@ public class RestfulFindBookPresenter implements FindBookPresenter {
 
     @Override
     public void prepareSuccessView(FindBookService.ResponseModel response) {
-        ViewModel restfulResponse = new ViewModel(response.ownerId(), response.book());
+        ViewModel restfulResponse = new ViewModel(response.book());
 
         responseEntity = ResponseEntity.status(HttpStatus.OK).body(restfulResponse);
     }
@@ -39,17 +39,17 @@ public class RestfulFindBookPresenter implements FindBookPresenter {
     }
 
     private static class ViewModel extends RepresentationModel<RestfulFindBookPresenter.ViewModel> {
-        private final UUID ownerId;
+        //private final UUID ownerId;
         private final BookDto book;
 
-        private ViewModel(UUID ownerId, BookDto book) {
-            this.ownerId = ownerId;
+        private ViewModel(BookDto book) {
+            //this.ownerId = ownerId;
             this.book = book;
         }
 
-        public UUID getOwnerId() {
-            return ownerId;
-        }
+//        public UUID getOwnerId() {
+//            return ownerId;
+//        }
 
         public BookDto getBook() {
             return book;

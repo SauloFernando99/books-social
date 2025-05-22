@@ -9,7 +9,7 @@ public interface FindBookService {
 
     void findBook(FindBookPresenter presenter, RequestModel request);
 
-    public record RequestModel(UUID ownerId, UUID bookId) {}
+    public record RequestModel(UUID bookId) {}
 
-    public record ResponseModel(UUID ownerId, BookDto book) {}
+    public record ResponseModel(BookDto book) {}
 }
