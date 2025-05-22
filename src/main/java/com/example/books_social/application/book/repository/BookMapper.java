@@ -3,9 +3,11 @@ package com.example.books_social.application.book.repository;
 import com.example.books_social.application.book.create.CreateBookService;
 import com.example.books_social.application.book.update.service.UpdateBookService;
 import com.example.books_social.domain.model.book.*;
+import com.example.books_social.presentation.book.requests.PutRequest;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class BookMapper {
 
@@ -78,10 +80,29 @@ public class BookMapper {
         );
     }
 
+    public static UpdateBookService.RequestModel toUpdatedRequestModel(UUID bookId, PutRequest request) {
+        return new UpdateBookService.RequestModel(
+                bookId,
+                request.title(),
+                request.author(),
+                request.genre(),
+                request.startDate(),
+                request.endDate(),
+                request.review(),
+                request.favoriteCharacter(),
+                request.rating(),
+                request.coverUrl(),
+                request.numberPages(),
+                request.readingStatus(),
+                request.bookTypes(),
+                request.isFavorite()
+        );
+    }
+
     public static BookDto updateFrom(BookDto original, UpdateBookService.RequestModel request) {
         return new BookDto(
                 original.bookId(),
-                request.ownerId() != null ? request.ownerId() : original.ownerId(),
+                original.ownerId(),
                 request.title() != null ? request.title() : original.title(),
                 request.author() != null ? request.author() : original.author(),
                 request.genre() != null ? request.genre() : original.genre(),

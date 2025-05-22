@@ -15,7 +15,6 @@ public interface UpdateBookService {
 
     public record RequestModel (
             UUID bookId,
-            UUID ownerId,
             String title,
             String author,
             String genre,

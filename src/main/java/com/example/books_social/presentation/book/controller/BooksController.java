@@ -6,10 +6,15 @@ import com.example.books_social.application.book.find.services.FindAllBooksServi
 import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
 import com.example.books_social.application.book.find.services.FindBookService;
 import com.example.books_social.application.book.find.services.FindBookServiceImpl;
+import com.example.books_social.application.book.repository.BookMapper;
+import com.example.books_social.application.book.update.presenter.UpdateBookPresenter;
+import com.example.books_social.application.book.update.service.UpdateBookService;
 import com.example.books_social.presentation.book.presenter.RestfulCreateBookPresenter;
 import com.example.books_social.presentation.book.presenter.RestfulFindAllBooksPresenter;
 import com.example.books_social.presentation.book.presenter.RestfulFindBookPresenter;
+import com.example.books_social.presentation.book.presenter.RestfulUpdateBookPresenter;
 import com.example.books_social.presentation.book.requests.PostRequest;
+import com.example.books_social.presentation.book.requests.PutRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,16 +29,18 @@ public class BooksController {
     private final CreateBookServiceImpl createBookService;
     private final FindAllBooksServiceImpl findAllBooksService;
     private final FindBookService findBookService;
+    private final UpdateBookService updateBookService;
 
     @Autowired
     public BooksController(
-        CreateBookServiceImpl createBookService,
-        FindAllBooksServiceImpl findAllBooksService,
-        FindBookServiceImpl findBookService
-        ) {
+            CreateBookServiceImpl createBookService,
+            FindAllBooksServiceImpl findAllBooksService,
+            FindBookServiceImpl findBookService, UpdateBookService updateBookService
+    ) {
         this.createBookService = createBookService;
         this.findAllBooksService = findAllBooksService;
         this.findBookService = findBookService;
+        this.updateBookService = updateBookService;
     }
 
     @PostMapping
@@ -83,6 +90,18 @@ public class BooksController {
         FindBookService.RequestModel request = new FindBookService.RequestModel(bookId);
 
         findBookService.findBook(presenter, request);
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @PutMapping("/update/{bookId}")
+    public ResponseEntity<?> updateBook(@PathVariable UUID bookId, @RequestBody PutRequest request) {
+        RestfulUpdateBookPresenter presenter = new RestfulUpdateBookPresenter();
+        UpdateBookService.RequestModel viewModel = BookMapper.toUpdatedRequestModel(bookId, request);
+
+        updateBookService.updateBook(presenter, viewModel);
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
