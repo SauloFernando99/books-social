@@ -77,7 +77,7 @@ public class BooksController {
                 : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    @GetMapping("/{bookId}")
+    @GetMapping("/find/{bookId}")
     public ResponseEntity<?> findBook(@PathVariable UUID bookId) {
         RestfulFindBookPresenter presenter = new RestfulFindBookPresenter();
         FindBookService.RequestModel request = new FindBookService.RequestModel(bookId);
