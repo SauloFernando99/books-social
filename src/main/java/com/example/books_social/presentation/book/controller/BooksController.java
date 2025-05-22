@@ -5,6 +5,7 @@ import com.example.books_social.application.book.create.CreateBookServiceImpl;
 import com.example.books_social.application.book.find.services.FindAllBooksService;
 import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
 import com.example.books_social.application.book.find.services.FindBookService;
+import com.example.books_social.application.book.find.services.FindBookServiceImpl;
 import com.example.books_social.presentation.book.presenter.RestfulCreateBookPresenter;
 import com.example.books_social.presentation.book.presenter.RestfulFindAllBooksPresenter;
 import com.example.books_social.presentation.book.presenter.RestfulFindBookPresenter;
@@ -22,14 +23,17 @@ public class BooksController {
 
     private final CreateBookServiceImpl createBookService;
     private final FindAllBooksServiceImpl findAllBooksService;
+    private final FindBookService findBookService;
 
     @Autowired
     public BooksController(
         CreateBookServiceImpl createBookService,
-        FindAllBooksServiceImpl findAllBooksService
+        FindAllBooksServiceImpl findAllBooksService,
+        FindBookServiceImpl findBookService
         ) {
         this.createBookService = createBookService;
         this.findAllBooksService = findAllBooksService;
+        this.findBookService = findBookService;
     }
 
     @PostMapping
@@ -77,5 +81,11 @@ public class BooksController {
     public ResponseEntity<?> findBook(@PathVariable UUID bookId) {
         RestfulFindBookPresenter presenter = new RestfulFindBookPresenter();
         FindBookService.RequestModel request = new FindBookService.RequestModel(bookId);
+
+        findBookService.findBook(presenter, request);
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 }
