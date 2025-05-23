@@ -8,4 +8,5 @@ public interface BookRepository {
     List<BookDto> findAllBooksByOwner(UUID ownerId);
     BookDto findById(UUID bookId);
     void saveOrUpdate(BookDto dto);
+    boolean existsById(UUID bookId);
 }

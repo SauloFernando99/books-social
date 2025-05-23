@@ -42,4 +42,9 @@ public class BookRepositoryImpl implements BookRepository {
         innerRepository.save(document);
     }
 
+    @Override
+    public boolean existsById(UUID id) {
+        return innerRepository.existsById(id);
+    }
+
 }
