@@ -1,6 +1,7 @@
 package com.example.books_social.presentation.book.controller;
 
 import com.example.books_social.application.book.create.CreateBookServiceImpl;
+import com.example.books_social.application.book.delete.DeleteBookServiceImpl;
 import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
 import com.example.books_social.application.book.find.services.FindBookServiceImpl;
 import com.example.books_social.application.book.repository.BookRepository;
@@ -42,5 +43,12 @@ public class BookServicesConfiguration {
        BookRepository bookRepository
     ) {
         return new UpdateBookServiceImpl(bookRepository);
+    }
+
+    @Bean
+    public DeleteBookServiceImpl deleteBookService(
+        BookRepository bookRepository
+    ) {
+        return new DeleteBookServiceImpl(bookRepository);
     }
 }
