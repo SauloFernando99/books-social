@@ -2,6 +2,7 @@ package com.example.books_social.presentation.book.controller;
 
 import com.example.books_social.application.book.create.CreateBookService.RequestModel;
 import com.example.books_social.application.book.create.CreateBookServiceImpl;
+import com.example.books_social.application.book.delete.DeleteBookService;
 import com.example.books_social.application.book.find.services.FindAllBooksService;
 import com.example.books_social.application.book.find.services.FindAllBooksServiceImpl;
 import com.example.books_social.application.book.find.services.FindBookService;
@@ -9,10 +10,7 @@ import com.example.books_social.application.book.find.services.FindBookServiceIm
 import com.example.books_social.application.book.repository.BookMapper;
 import com.example.books_social.application.book.update.presenter.UpdateBookPresenter;
 import com.example.books_social.application.book.update.service.UpdateBookService;
-import com.example.books_social.presentation.book.presenter.RestfulCreateBookPresenter;
-import com.example.books_social.presentation.book.presenter.RestfulFindAllBooksPresenter;
-import com.example.books_social.presentation.book.presenter.RestfulFindBookPresenter;
-import com.example.books_social.presentation.book.presenter.RestfulUpdateBookPresenter;
+import com.example.books_social.presentation.book.presenter.*;
 import com.example.books_social.presentation.book.requests.PostRequest;
 import com.example.books_social.presentation.book.requests.PutRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +28,21 @@ public class BooksController {
     private final FindAllBooksServiceImpl findAllBooksService;
     private final FindBookService findBookService;
     private final UpdateBookService updateBookService;
+    private final DeleteBookService deleteBookService;
 
     @Autowired
     public BooksController(
             CreateBookServiceImpl createBookService,
             FindAllBooksServiceImpl findAllBooksService,
-            FindBookServiceImpl findBookService, UpdateBookService updateBookService
+            FindBookServiceImpl findBookService,
+            UpdateBookService updateBookService,
+            DeleteBookService deleteBookService
     ) {
         this.createBookService = createBookService;
         this.findAllBooksService = findAllBooksService;
         this.findBookService = findBookService;
         this.updateBookService = updateBookService;
+        this.deleteBookService = deleteBookService;
     }
 
     @PostMapping
@@ -102,6 +104,18 @@ public class BooksController {
         UpdateBookService.RequestModel viewModel = BookMapper.toUpdatedRequestModel(bookId, request);
 
         updateBookService.updateBook(presenter, viewModel);
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @DeleteMapping("/delete/{bookId}")
+    public ResponseEntity<?> deleteBook(@PathVariable UUID bookId) {
+        RestfulDeleteBookPresenter presenter = new RestfulDeleteBookPresenter();
+        DeleteBookService.RequestModel viewModel = new DeleteBookService.RequestModel(bookId);
+
+        deleteBookService.deleteBook(presenter, viewModel);
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
