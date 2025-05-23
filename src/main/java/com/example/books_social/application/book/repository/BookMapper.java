@@ -99,22 +99,28 @@ public class BookMapper {
         );
     }
 
-    public static BookDto updateFrom(BookDto original, UpdateBookService.RequestModel request) {
-        return new BookDto(
-                original.bookId(),
+    public static Book updateFrom(BookDto original, UpdateBookService.RequestModel request) {
+        Genre genre = Genre.valueOf(request.genre() != null ? request.genre() : original.genre());
+        Rating rating = new Rating(request.rating() != null ? request.rating() : original.rating());
+        CoverUrl coverUrl = new CoverUrl(request.coverUrl() != null ? request.coverUrl() : original.coverUrl());
+        NumberPages numberPages = new NumberPages(request.numberPages() != null ? request.numberPages() : original.numberPages());
+        ReadingStatus readingStatus = ReadingStatus.valueOf(request.readingStatus() != null ? request.readingStatus() : original.readingStatus());
+        List<BookType> bookTypes = parseBookTypes(request.bookTypes() != null ? request.bookTypes() : original.bookTypes());
+        return new Book(
+                new BookId(original.bookId()),
                 original.ownerId(),
                 request.title() != null ? request.title() : original.title(),
                 request.author() != null ? request.author() : original.author(),
-                request.genre() != null ? request.genre() : original.genre(),
+                genre,
                 request.startDate() != null ? request.startDate() : original.startDate(),
                 request.endDate() != null ? request.endDate() : original.endDate(),
                 request.review() != null ? request.review() : original.review(),
                 request.favoriteCharacter() != null ? request.favoriteCharacter() : original.favoriteCharacter(),
-                request.rating() != null ? request.rating() : original.rating(),
-                request.coverUrl() != null ? request.coverUrl() : original.coverUrl(),
-                request.numberPages() != null ? request.numberPages() : original.numberPages(),
-                request.readingStatus() != null ? request.readingStatus() : original.readingStatus(),
-                request.bookTypes() != null ? request.bookTypes() : original.bookTypes(),
+                rating,
+                coverUrl,
+                numberPages,
+                readingStatus,
+                bookTypes,
                 request.isFavorite(),
                 original.createdAt()
         );

@@ -24,7 +24,8 @@ public class UpdateBookServiceImpl implements UpdateBookService{
             return;
         }
 
-        BookDto updated = BookMapper.updateFrom(original, request);
+        Book updatedBook = BookMapper.updateFrom(original, request);
+        BookDto updated = BookMapper.toDto(updatedBook);
 
         if (!updated.equals(original)) {
             bookRepository.saveOrUpdate(updated);
