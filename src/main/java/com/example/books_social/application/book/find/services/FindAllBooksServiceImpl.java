@@ -18,9 +18,8 @@ public class FindAllBooksServiceImpl implements FindAllBooksService{
     public void findAllByOwner(FindAllBooksPresenter presenter, RequestModel request) {
         List<BookDto> books = bookRepository.findAllBooksByOwner(request.ownerId());
 
-        System.out.println(books);
-
-        ResponseModel response = new ResponseModel(request.ownerId(), books);
+        Integer numberOfBooks = books.size();
+        ResponseModel response = new ResponseModel(request.ownerId(), numberOfBooks, books);
 
         presenter.prepareSuccessView(response);
     }

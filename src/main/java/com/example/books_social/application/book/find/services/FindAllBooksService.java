@@ -12,6 +12,6 @@ public interface FindAllBooksService {
 
     public record RequestModel(UUID ownerId) {}
 
-    public record ResponseModel(UUID ownerId, List<BookDto> books) {}
+    public record ResponseModel(UUID ownerId, Integer numberOfBooks, List<BookDto> books) {}
 
 }
