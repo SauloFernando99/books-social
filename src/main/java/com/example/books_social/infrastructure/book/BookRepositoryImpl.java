@@ -47,4 +47,10 @@ public class BookRepositoryImpl implements BookRepository {
         return innerRepository.existsById(id);
     }
 
+    @Override
+    public void deleteById(UUID bookId) {
+        innerRepository.deleteById(bookId);
+        return;
+    }
+
 }

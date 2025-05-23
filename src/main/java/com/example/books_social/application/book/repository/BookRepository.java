@@ -9,4 +9,5 @@ public interface BookRepository {
     BookDto findById(UUID bookId);
     void saveOrUpdate(BookDto dto);
     boolean existsById(UUID bookId);
+    void deleteById(UUID bookId);
 }

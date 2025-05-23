@@ -1,11 +1,7 @@
 package com.example.books_social.application.book.delete;
 
-import com.example.books_social.application.book.create.CreateBookService;
-import com.example.books_social.application.book.repository.BookMapper;
 import com.example.books_social.application.book.repository.BookRepository;
 import com.example.books_social.application.shared.exceptions.EntityNotFoundException;
-import com.example.books_social.domain.model.book.Book;
-import com.example.books_social.domain.model.book.BookId;
 
 public class DeleteBookServiceImpl implements DeleteBookService{
     BookRepository bookRepository;
@@ -26,6 +22,8 @@ public class DeleteBookServiceImpl implements DeleteBookService{
             presenter.prepareFailView(new EntityNotFoundException(message));
             return;
         }
+
+        bookRepository.deleteById(request.bookId());
 
         presenter.prepareSuccessView(new DeleteBookService.ResponseModel(request.bookId()));
     }
