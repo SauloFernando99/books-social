@@ -8,7 +8,7 @@ public class Commentary {
     CommentaryId commentaryId;
     BookId bookId;
     UUID ownerId;
-
-
+    Progress progress;
+    Reaction reaction;
 
 }
