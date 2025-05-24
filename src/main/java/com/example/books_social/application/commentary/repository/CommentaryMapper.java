@@ -1,5 +1,6 @@
 package com.example.books_social.application.commentary.repository;
 
+import com.example.books_social.application.commentary.create.CreateCommentaryService;
 import com.example.books_social.domain.model.book.BookId;
 import com.example.books_social.domain.model.comentary.*;
 
@@ -27,6 +28,19 @@ public class CommentaryMapper {
             commentary.getProgress().value(),
             commentary.getReaction().toString(),
             commentary.getCreatedAt()
+        );
+    }
+
+    public static Commentary fromRequestModel(CommentaryId commentaryId, CreateCommentaryService.RequestModel requestModel) {
+        Reaction reaction = Reaction.valueOf(requestModel.reaction());
+
+        return new Commentary(
+                commentaryId,
+                new BookId(requestModel.bookId()),
+                requestModel.userId(),
+                new CommentaryText(requestModel.commentaryText()),
+                new Progress(requestModel.progress()),
+                reaction
         );
     }
 }
