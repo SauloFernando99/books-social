@@ -31,6 +31,22 @@ public class Commentary {
         this.createdAt = createdAt;
     }
 
+    public Commentary(
+        CommentaryId commentaryId,
+        BookId bookId,
+        UUID userId,
+        CommentaryText commentaryText,
+        Progress progress,
+        Reaction reaction
+    ) {
+        this.commentaryId = commentaryId;
+        this.bookId = bookId;
+        this.userId = userId;
+        this.commentaryText = commentaryText;
+        this.progress = progress;
+        this.reaction = reaction;
+    }
+
     public CommentaryId getCommentaryId() {
         return commentaryId;
     }
