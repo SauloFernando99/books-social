@@ -8,12 +8,12 @@ import java.util.UUID;
 
 public interface CreateCommentaryService {
     void createCommentary(
-        CreateBookPresenter presenter,
+        CreateCommentaryPresenter presenter,
         RequestModel request
     );
 
     public record RequestModel(
-       UUID BookId,
+       UUID bookId,
        UUID userId,
        String commentaryText,
        Integer progress,
