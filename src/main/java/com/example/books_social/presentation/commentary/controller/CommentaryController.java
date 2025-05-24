@@ -23,7 +23,7 @@ public class CommentaryController {
     @Autowired
     public CommentaryController(
         CreateCommentaryServiceImpl createCommentaryService,
-        FindAllCommentsServiceImpl findAllCommentsService]
+        FindAllCommentsServiceImpl findAllCommentsService
     ) {
         this.createCommentaryService = createCommentaryService;
         this.findAllCommentsService = findAllCommentsService;
