@@ -10,5 +10,5 @@ public interface FindAllCommentsService {
 
     public record RequestModel(UUID bookId) {}
 
-    public record ResponseModel(UUID ownerId, UUID bookId, Integer numberOfComments, List<CommentaryDto> comments) {}
+    public record ResponseModel(UUID bookId, Integer numberOfComments, List<CommentaryDto> comments) {}
 }
