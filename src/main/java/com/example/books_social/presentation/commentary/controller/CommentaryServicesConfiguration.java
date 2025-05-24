@@ -1,7 +1,7 @@
 package com.example.books_social.presentation.commentary.controller;
 
 import com.example.books_social.application.book.repository.BookRepository;
-import com.example.books_social.application.commentary.create.CreateCommentaryService;
+import com.example.books_social.application.commentary.create.CreateCommentaryServiceImpl;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import org.springframework.context.annotation.Bean;
@@ -14,13 +14,15 @@ public class CommentaryServicesConfiguration {
     UuidGeneratorService uuidGeneratorService;
 
     @Bean
-    void CreateCommentaryService(
+    public CreateCommentaryServiceImpl createCommentaryService(
         CommentaryRepository commentaryRepository,
         BookRepository bookRepository,
         UuidGeneratorService uuidGeneratorService
     ){
-        this.commentaryRepository = commentaryRepository;
-        this.bookRepository = bookRepository;
-        this.uuidGeneratorService = uuidGeneratorService;
+        return new CreateCommentaryServiceImpl(
+            commentaryRepository,
+            bookRepository,
+            uuidGeneratorService
+        );
     }
 }
