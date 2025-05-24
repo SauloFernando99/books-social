@@ -26,8 +26,8 @@ public class Progress extends ValueObject {
     protected Notification validate() {
         Notification notification = new Notification();
 
-        if (value < 1) {
-            notification.addError("Progress shouldn't be under 1%");
+        if (value < 0) {
+            notification.addError("Progress shouldn't be under 0%");
         }
         if (value > 100) {
             notification.addError("Progress shouldn't be over 100%");
