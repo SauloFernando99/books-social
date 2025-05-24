@@ -2,10 +2,10 @@ package com.example.books_social.infrastructure.commentary;
 
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
-import com.example.books_social.infrastructure.book.BookDocument;
-import com.example.books_social.infrastructure.book.MongoBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CommentaryRepositoryImpl implements CommentaryRepository {
 
     private final MongoCommentaryRepository innerRepository;
