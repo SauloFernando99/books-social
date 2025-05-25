@@ -8,11 +8,13 @@ import com.example.books_social.application.commentary.find.service.FindAllComme
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindCommentaryService;
 import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
-import com.example.books_social.presentation.commentary.presenter.RestfulCreateCommentaryPresenter;
-import com.example.books_social.presentation.commentary.presenter.RestfulDeleteCommentaryPresenter;
-import com.example.books_social.presentation.commentary.presenter.RestfulFindAllCommentsPresenter;
-import com.example.books_social.presentation.commentary.presenter.RestfulFindCommentaryPresenter;
+import com.example.books_social.application.commentary.repository.CommentaryDto;
+import com.example.books_social.application.commentary.repository.CommentaryMapper;
+import com.example.books_social.application.commentary.update.UpdateCommentaryService;
+import com.example.books_social.application.commentary.update.UpdateCommentaryServiceImpl;
+import com.example.books_social.presentation.commentary.presenter.*;
 import com.example.books_social.presentation.commentary.requests.PostRequest;
+import com.example.books_social.presentation.commentary.requests.PutRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,20 +28,22 @@ public class CommentaryController {
     private final CreateCommentaryServiceImpl createCommentaryService;
     private final FindAllCommentsServiceImpl findAllCommentsService;
     private final FindCommentaryServiceImpl findCommentaryService;
-
     private final DeleteCommentaryServiceImpl deleteCommentaryService;
+    private final UpdateCommentaryServiceImpl updateCommentaryService;
 
     @Autowired
     public CommentaryController(
         CreateCommentaryServiceImpl createCommentaryService,
         FindAllCommentsServiceImpl findAllCommentsService,
         FindCommentaryServiceImpl findCommentaryService,
-        DeleteCommentaryServiceImpl deleteCommentaryService
+        DeleteCommentaryServiceImpl deleteCommentaryService,
+        UpdateCommentaryServiceImpl updateCommentaryService
     ) {
         this.createCommentaryService = createCommentaryService;
         this.findAllCommentsService = findAllCommentsService;
         this.findCommentaryService = findCommentaryService;
         this.deleteCommentaryService = deleteCommentaryService;
+        this.updateCommentaryService = updateCommentaryService;
     }
 
     @PostMapping
@@ -88,6 +92,21 @@ public class CommentaryController {
         RestfulDeleteCommentaryPresenter presenter = new RestfulDeleteCommentaryPresenter();
 
         deleteCommentaryService.deleteCommentary(presenter, new DeleteCommentaryService.RequestModel(commentaryId));
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @PutMapping("/update/{commentaryId}")
+    public ResponseEntity<?> updateCommentary(@PathVariable UUID commentaryId, @RequestBody PutRequest request) {
+        RestfulUpdateCommentaryPresenter presenter = new RestfulUpdateCommentaryPresenter();
+        UpdateCommentaryService.RequestModel viewModel = CommentaryMapper.toUpdateRequestModel(
+            commentaryId,
+            request
+        );
+
+        updateCommentaryService.updateCommentary(presenter, viewModel);
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
