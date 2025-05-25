@@ -6,6 +6,7 @@ import com.example.books_social.application.commentary.delete.DeleteCommentarySe
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
+import com.example.books_social.application.commentary.update.UpdateCommentaryServiceImpl;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,6 +56,15 @@ public class CommentaryServicesConfiguration {
     ) {
         return new DeleteCommentaryServiceImpl(
             commentaryRepository
+        );
+    }
+
+    @Bean
+    public UpdateCommentaryServiceImpl updateCommentaryService(
+        CommentaryRepository commentaryRepository
+    ) {
+        return new UpdateCommentaryServiceImpl(
+          commentaryRepository
         );
     }
 }
