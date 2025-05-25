@@ -4,6 +4,9 @@ import com.example.books_social.application.commentary.create.CreateCommentarySe
 import com.example.books_social.application.commentary.update.UpdateCommentaryService;
 import com.example.books_social.domain.model.book.BookId;
 import com.example.books_social.domain.model.comentary.*;
+import com.example.books_social.presentation.commentary.requests.PutRequest;
+
+import java.util.UUID;
 
 public class CommentaryMapper {
     public static Commentary fromDto(CommentaryDto dto) {
@@ -42,6 +45,15 @@ public class CommentaryMapper {
                 new CommentaryText(requestModel.commentaryText()),
                 new Progress(requestModel.progress()),
                 reaction
+        );
+    }
+
+    public static UpdateCommentaryService.RequestModel toUpdateRequestModel(UUID commentaryId, PutRequest request) {
+        return new UpdateCommentaryService.RequestModel(
+            commentaryId,
+            request.commentaryText(),
+            request.progress(),
+            request.reaction()
         );
     }
 
