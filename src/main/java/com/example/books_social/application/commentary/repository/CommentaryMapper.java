@@ -1,6 +1,7 @@
 package com.example.books_social.application.commentary.repository;
 
 import com.example.books_social.application.commentary.create.CreateCommentaryService;
+import com.example.books_social.application.commentary.update.UpdateCommentaryService;
 import com.example.books_social.domain.model.book.BookId;
 import com.example.books_social.domain.model.comentary.*;
 
@@ -41,6 +42,20 @@ public class CommentaryMapper {
                 new CommentaryText(requestModel.commentaryText()),
                 new Progress(requestModel.progress()),
                 reaction
+        );
+    }
+
+    public static Commentary updateFrom(CommentaryDto original, UpdateCommentaryService.RequestModel request) {
+        CommentaryText commentaryText = new CommentaryText(request.CommentaryText() != null ? request.CommentaryText() : original.commentaryText());
+        Progress progress = new Progress(request.progress() != null ? request.progress() : original.progress());
+        Reaction reaction = Reaction.valueOf(request.reaction() != null ? request.reaction() : original.reaction());
+        return new Commentary(
+            new CommentaryId(original.commentaryId()),
+            new BookId(original.bookId()),
+            original.userId(),
+            commentaryText,
+            progress,
+            reaction
         );
     }
 }
