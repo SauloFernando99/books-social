@@ -1,13 +1,15 @@
-package com.example.books_social.application.commentary.find;
+package com.example.books_social.application.commentary.find.service;
 
 import com.example.books_social.application.book.repository.BookRepository;
+import com.example.books_social.application.commentary.find.presenter.FindAllCommentsPresenter;
+import com.example.books_social.application.commentary.find.service.FindAllCommentsService;
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.application.shared.exceptions.EntityNotFoundException;
 
 import java.util.List;
 
-public class FindAllCommentsServiceImpl implements FindAllCommentsService{
+public class FindAllCommentsServiceImpl implements FindAllCommentsService {
     private final CommentaryRepository repository;
     private final BookRepository bookRepository;
 

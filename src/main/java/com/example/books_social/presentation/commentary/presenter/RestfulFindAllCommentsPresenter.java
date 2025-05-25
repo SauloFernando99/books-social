@@ -1,14 +1,13 @@
 package com.example.books_social.presentation.commentary.presenter;
 
-import com.example.books_social.application.commentary.find.FindAllCommentsPresenter;
-import com.example.books_social.application.commentary.find.FindAllCommentsService;
+import com.example.books_social.application.commentary.find.presenter.FindAllCommentsPresenter;
+import com.example.books_social.application.commentary.find.service.FindAllCommentsService;
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.presentation.shared.error.ErrorResponseEntityFactory;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 

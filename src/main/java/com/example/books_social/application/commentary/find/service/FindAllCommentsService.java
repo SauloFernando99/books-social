@@ -1,5 +1,6 @@
-package com.example.books_social.application.commentary.find;
+package com.example.books_social.application.commentary.find.service;
 
+import com.example.books_social.application.commentary.find.presenter.FindAllCommentsPresenter;
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 
 import java.util.List;

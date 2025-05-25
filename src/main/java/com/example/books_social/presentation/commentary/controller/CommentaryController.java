@@ -2,8 +2,8 @@ package com.example.books_social.presentation.commentary.controller;
 
 import com.example.books_social.application.commentary.create.CreateCommentaryService;
 import com.example.books_social.application.commentary.create.CreateCommentaryServiceImpl;
-import com.example.books_social.application.commentary.find.FindAllCommentsService;
-import com.example.books_social.application.commentary.find.FindAllCommentsServiceImpl;
+import com.example.books_social.application.commentary.find.service.FindAllCommentsService;
+import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
 import com.example.books_social.presentation.commentary.presenter.RestfulCreateCommentaryPresenter;
 import com.example.books_social.presentation.commentary.presenter.RestfulFindAllCommentsPresenter;
 import com.example.books_social.presentation.commentary.requests.PostRequest;
