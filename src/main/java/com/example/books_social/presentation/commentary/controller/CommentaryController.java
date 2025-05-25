@@ -2,11 +2,14 @@ package com.example.books_social.presentation.commentary.controller;
 
 import com.example.books_social.application.commentary.create.CreateCommentaryService;
 import com.example.books_social.application.commentary.create.CreateCommentaryServiceImpl;
+import com.example.books_social.application.commentary.delete.DeleteCommentaryService;
+import com.example.books_social.application.commentary.delete.DeleteCommentaryServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindAllCommentsService;
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindCommentaryService;
 import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
 import com.example.books_social.presentation.commentary.presenter.RestfulCreateCommentaryPresenter;
+import com.example.books_social.presentation.commentary.presenter.RestfulDeleteCommentaryPresenter;
 import com.example.books_social.presentation.commentary.presenter.RestfulFindAllCommentsPresenter;
 import com.example.books_social.presentation.commentary.presenter.RestfulFindCommentaryPresenter;
 import com.example.books_social.presentation.commentary.requests.PostRequest;
@@ -24,14 +27,19 @@ public class CommentaryController {
     private final FindAllCommentsServiceImpl findAllCommentsService;
     private final FindCommentaryServiceImpl findCommentaryService;
 
+    private final DeleteCommentaryServiceImpl deleteCommentaryService;
+
     @Autowired
     public CommentaryController(
-            CreateCommentaryServiceImpl createCommentaryService,
-            FindAllCommentsServiceImpl findAllCommentsService, FindCommentaryServiceImpl findCommentaryService
+        CreateCommentaryServiceImpl createCommentaryService,
+        FindAllCommentsServiceImpl findAllCommentsService,
+        FindCommentaryServiceImpl findCommentaryService,
+        DeleteCommentaryServiceImpl deleteCommentaryService
     ) {
         this.createCommentaryService = createCommentaryService;
         this.findAllCommentsService = findAllCommentsService;
         this.findCommentaryService = findCommentaryService;
+        this.deleteCommentaryService = deleteCommentaryService;
     }
 
     @PostMapping
@@ -69,6 +77,17 @@ public class CommentaryController {
         RestfulFindCommentaryPresenter presenter = new RestfulFindCommentaryPresenter();
 
         findCommentaryService.findCommentary(presenter, new FindCommentaryService.RequestModel(commentaryId));
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @DeleteMapping("/delete/{commentaryId}")
+    public ResponseEntity<?> deleteCommentary(@PathVariable UUID commentaryId) {
+        RestfulDeleteCommentaryPresenter presenter = new RestfulDeleteCommentaryPresenter();
+
+        deleteCommentaryService.deleteCommentary(presenter, new DeleteCommentaryService.RequestModel(commentaryId));
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
