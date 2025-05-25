@@ -37,4 +37,14 @@ public class CommentaryRepositoryImpl implements CommentaryRepository {
                 .orElse(null);
     }
 
+    @Override
+    public boolean existsById(UUID commentaryId) {
+        return innerRepository.existsById(commentaryId);
+    }
+
+    @Override
+    public void deleteById(UUID commentaryId) {
+        innerRepository.deleteById(commentaryId);
+    }
+
 }

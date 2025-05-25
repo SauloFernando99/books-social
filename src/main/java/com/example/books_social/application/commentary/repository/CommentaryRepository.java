@@ -9,4 +9,6 @@ public interface CommentaryRepository {
     void create(CommentaryDto dto);
     List<CommentaryDto> findAllCommentsByBook(UUID bookId);
     CommentaryDto findCommentary(UUID commentaryId);
+    boolean existsById(UUID commentaryId);
+    void deleteById(UUID commentaryId);
 }
