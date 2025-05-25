@@ -1,0 +1,63 @@
+package com.example.books_social.presentation.commentary.presenter;
+
+import com.example.books_social.application.commentary.find.presenter.FindCommentaryPresenter;
+import com.example.books_social.application.commentary.find.service.FindCommentaryService;
+import com.example.books_social.application.commentary.repository.CommentaryDto;
+import com.example.books_social.presentation.shared.error.ErrorResponseEntityFactory;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import java.util.UUID;
+
+public class RestfulFindCommentaryPresenter implements FindCommentaryPresenter {
+    private ResponseEntity<?> responseEntity;
+
+    public RestfulFindCommentaryPresenter (){}
+
+    @Override
+    public void prepareSuccessView(FindCommentaryService.ResponseModel response) {
+         RestfulFindCommentaryPresenter.ViewModel restfulResponse = new RestfulFindCommentaryPresenter.ViewModel(
+             response.commentaryId(),
+             response.bookId(),
+             response.commentary()
+         );
+         responseEntity = ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Override
+    public void prepareFailView(Throwable throwable) {
+        responseEntity = ErrorResponseEntityFactory.createErrorResponseFrom(throwable);
+    }
+
+    @Override
+    public boolean isDone() {
+        return responseEntity != null;
+    }
+
+    public ResponseEntity<?> getResponseEntity() { return responseEntity; }
+
+    private static class ViewModel extends RepresentationModel<RestfulFindCommentaryPresenter.ViewModel> {
+        private final UUID commentaryId;
+        private final UUID bookId;
+        private final CommentaryDto commentary;
+
+        public ViewModel(UUID commentaryId, UUID bookId, CommentaryDto commentary) {
+            this.commentaryId = commentaryId;
+            this.bookId = bookId;
+            this.commentary = commentary;
+        }
+
+        public UUID getCommentaryId() {
+            return commentaryId;
+        }
+
+        public UUID getBookId() {
+            return bookId;
+        }
+
+        public CommentaryDto getCommentary() {
+            return commentary;
+        }
+    }
+}
