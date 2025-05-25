@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface FindCommentaryService {
 
-    void findCommentary(FindCommentaryPresenter presenter, ResponseModel response);
+    void findCommentary(FindCommentaryPresenter presenter, RequestModel request);
 
     public record RequestModel(UUID commentaryId) {}
 
