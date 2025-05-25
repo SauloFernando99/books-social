@@ -2,6 +2,7 @@ package com.example.books_social.presentation.commentary.controller;
 
 import com.example.books_social.application.book.repository.BookRepository;
 import com.example.books_social.application.commentary.create.CreateCommentaryServiceImpl;
+import com.example.books_social.application.commentary.delete.DeleteCommentaryServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
@@ -44,6 +45,15 @@ public class CommentaryServicesConfiguration {
         CommentaryRepository commentaryRepository
     ) {
         return new FindCommentaryServiceImpl(
+            commentaryRepository
+        );
+    }
+
+    @Bean
+    public DeleteCommentaryServiceImpl deleteCommentaryService(
+        CommentaryRepository commentaryRepository
+    ) {
+        return new DeleteCommentaryServiceImpl(
             commentaryRepository
         );
     }
