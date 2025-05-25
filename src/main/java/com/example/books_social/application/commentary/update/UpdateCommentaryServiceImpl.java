@@ -29,5 +29,7 @@ public class UpdateCommentaryServiceImpl implements UpdateCommentaryService{
         if (!updated.equals(original)) {
             repository.saveOrUpdate(updated);
         }
+
+        presenter.prepareSuccessView(new ResponseModel(updated.commentaryId(), updated.bookId(), updated));
     }
 }
