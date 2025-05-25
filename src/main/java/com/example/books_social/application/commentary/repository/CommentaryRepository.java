@@ -11,4 +11,5 @@ public interface CommentaryRepository {
     CommentaryDto findCommentary(UUID commentaryId);
     boolean existsById(UUID commentaryId);
     void deleteById(UUID commentaryId);
+    void saveOrUpdate(CommentaryDto dto);
 }

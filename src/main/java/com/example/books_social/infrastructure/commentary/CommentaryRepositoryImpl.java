@@ -47,4 +47,10 @@ public class CommentaryRepositoryImpl implements CommentaryRepository {
         innerRepository.deleteById(commentaryId);
     }
 
+    @Override
+    public void saveOrUpdate(CommentaryDto dto) {
+        CommentaryDocument document = CommentaryDbMapper.toDocument(dto);
+        innerRepository.save(document);
+    }
+
 }
