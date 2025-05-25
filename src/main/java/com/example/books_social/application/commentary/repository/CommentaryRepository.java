@@ -8,4 +8,5 @@ import java.util.UUID;
 public interface CommentaryRepository {
     void create(CommentaryDto dto);
     List<CommentaryDto> findAllCommentsByBook(UUID bookId);
+    CommentaryDto findCommentary(UUID commentaryId);
 }

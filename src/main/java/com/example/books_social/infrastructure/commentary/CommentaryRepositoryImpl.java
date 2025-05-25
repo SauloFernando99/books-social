@@ -2,7 +2,6 @@ package com.example.books_social.infrastructure.commentary;
 
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
-import com.example.books_social.domain.model.book.BookId;
 import com.example.books_social.infrastructure.book.BookDbMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,6 +29,12 @@ public class CommentaryRepositoryImpl implements CommentaryRepository {
     @Override
     public List<CommentaryDto> findAllCommentsByBook(UUID bookId) {
         return innerRepository.findAllCommentsByBookId(bookId).stream().map(CommentaryDbMapper::toDto).collect(Collectors.toList());
-
     }
+
+    @Override
+    public CommentaryDto findCommentary(UUID commentaryId) {
+        return innerRepository.findById(commentaryId).map(CommentaryDbMapper::toDto)
+                .orElse(null);
+    }
+
 }
