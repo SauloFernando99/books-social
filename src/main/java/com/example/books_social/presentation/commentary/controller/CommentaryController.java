@@ -4,8 +4,11 @@ import com.example.books_social.application.commentary.create.CreateCommentarySe
 import com.example.books_social.application.commentary.create.CreateCommentaryServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindAllCommentsService;
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
+import com.example.books_social.application.commentary.find.service.FindCommentaryService;
+import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
 import com.example.books_social.presentation.commentary.presenter.RestfulCreateCommentaryPresenter;
 import com.example.books_social.presentation.commentary.presenter.RestfulFindAllCommentsPresenter;
+import com.example.books_social.presentation.commentary.presenter.RestfulFindCommentaryPresenter;
 import com.example.books_social.presentation.commentary.requests.PostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,14 +22,16 @@ import java.util.UUID;
 public class CommentaryController {
     private final CreateCommentaryServiceImpl createCommentaryService;
     private final FindAllCommentsServiceImpl findAllCommentsService;
+    private final FindCommentaryServiceImpl findCommentaryService;
 
     @Autowired
     public CommentaryController(
-        CreateCommentaryServiceImpl createCommentaryService,
-        FindAllCommentsServiceImpl findAllCommentsService
+            CreateCommentaryServiceImpl createCommentaryService,
+            FindAllCommentsServiceImpl findAllCommentsService, FindCommentaryServiceImpl findCommentaryService
     ) {
         this.createCommentaryService = createCommentaryService;
         this.findAllCommentsService = findAllCommentsService;
+        this.findCommentaryService = findCommentaryService;
     }
 
     @PostMapping
@@ -53,6 +58,17 @@ public class CommentaryController {
         RestfulFindAllCommentsPresenter presenter = new RestfulFindAllCommentsPresenter();
 
         findAllCommentsService.findAllByBookId(presenter, new FindAllCommentsService.RequestModel(bookId));
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @GetMapping("/find/{commentaryId}")
+    public ResponseEntity<?> findCommentary(@PathVariable UUID commentaryId) {
+        RestfulFindCommentaryPresenter presenter = new RestfulFindCommentaryPresenter();
+
+        findCommentaryService.findCommentary(presenter, new FindCommentaryService.RequestModel(commentaryId));
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
