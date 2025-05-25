@@ -3,6 +3,7 @@ package com.example.books_social.presentation.commentary.controller;
 import com.example.books_social.application.book.repository.BookRepository;
 import com.example.books_social.application.commentary.create.CreateCommentaryServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
+import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,15 @@ public class CommentaryServicesConfiguration {
         return new FindAllCommentsServiceImpl(
             commentaryRepository,
             bookRepository
+        );
+    }
+
+    @Bean
+    public FindCommentaryServiceImpl findCommentaryService(
+        CommentaryRepository commentaryRepository
+    ) {
+        return new FindCommentaryServiceImpl(
+            commentaryRepository
         );
     }
 }
