@@ -17,12 +17,12 @@ public class RestfulFindCommentaryPresenter implements FindCommentaryPresenter {
 
     @Override
     public void prepareSuccessView(FindCommentaryService.ResponseModel response) {
-         RestfulFindCommentaryPresenter.ViewModel restfulResponse = new RestfulFindCommentaryPresenter.ViewModel(
+         ViewModel restfulResponse = new RestfulFindCommentaryPresenter.ViewModel(
              response.commentaryId(),
              response.bookId(),
              response.commentary()
          );
-         responseEntity = ResponseEntity.status(HttpStatus.OK).build();
+         responseEntity = ResponseEntity.status(HttpStatus.OK).body(restfulResponse);
     }
 
     @Override
