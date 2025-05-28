@@ -1,4 +1,4 @@
-package com.example.books_social.presentation.account;
+package com.example.books_social.presentation.account.controller;
 
 import com.example.books_social.domain.model.account.Account;
 import com.example.books_social.application.account.AccountDto;
