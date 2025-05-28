@@ -9,5 +9,5 @@ import java.util.UUID;
 @Repository
 public interface MongoBookRepository extends MongoRepository<BookDocument, UUID> {
 
-    List<BookDocument> findAllBooksByOwnerId(UUID ownerId);
+    List<BookDocument> findAllByOwnerIdOrderByCreatedAtAsc(UUID ownerId);
 }
