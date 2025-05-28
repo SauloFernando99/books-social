@@ -10,4 +10,5 @@ public interface BookRepository {
     void saveOrUpdate(BookDto dto);
     boolean existsById(UUID bookId);
     void deleteById(UUID bookId);
+    boolean existsByOwnerIdAndTitle(UUID ownerId, String title);
 }

@@ -52,4 +52,9 @@ public class BookRepositoryImpl implements BookRepository {
         return;
     }
 
+    @Override
+    public boolean existsByOwnerIdAndTitle(UUID ownerId, String title){
+        return innerRepository.existsByOwnerIdAndTitle(ownerId, title);
+    }
+
 }

@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface MongoBookRepository extends MongoRepository<BookDocument, UUID> {
 
     List<BookDocument> findAllByOwnerIdOrderByCreatedAtAsc(UUID ownerId);
+    boolean existsByOwnerIdAndTitle(UUID ownerId, String title);
 }
