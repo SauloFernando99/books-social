@@ -1,9 +1,13 @@
 package com.example.books_social.application.account.repository;
 
+import com.example.books_social.application.account.create.CreateUserAccountService;
 import com.example.books_social.domain.model.account.*;
 
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.example.books_social.domain.model.account.Authority.USER;
 
 public class UserAccountMapper {
 
@@ -57,6 +61,21 @@ public class UserAccountMapper {
                 credentials.isAccountNonLocked(),
                 credentials.isCredentialsNonExpired(),
                 credentials.isEnabled()
+        );
+    }
+    
+    public static UserAccount fromRequestModel (
+        UserAccountId userAccountId, CreateUserAccountService.RequestModel request
+    ) {
+        Set<Authority> authorities = EnumSet.of(Authority.USER);
+        return new UserAccount(
+            userAccountId,
+            new Email(request.email()),
+            new AccountCredentials(new Username(request.username()), request.password(), authorities),
+            new Username(request.username()),
+            request.password(),
+            new UserPhoto(request.userPhoto()),
+            authorities
         );
     }
 }
