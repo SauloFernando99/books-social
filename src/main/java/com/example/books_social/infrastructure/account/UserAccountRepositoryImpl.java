@@ -17,4 +17,9 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
         UserAccountDocument document = UserAccountDbMapper.toDocument(dto);
         innerRepository.save(document);
     }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return innerRepository.existsByEmail(email);
+    }
 }
