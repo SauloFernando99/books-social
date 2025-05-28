@@ -2,9 +2,10 @@ package com.example.books_social.application.account.repository;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 public record UserAccountDto(
-    String id,
+    UUID id,
     String email,
     LocalDateTime createdAt,
 
