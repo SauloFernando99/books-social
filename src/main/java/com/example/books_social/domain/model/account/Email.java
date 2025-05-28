@@ -1,4 +1,4 @@
-package com.example.books_social.domain.shared.valueobject;
+package com.example.books_social.domain.model.account;
 
 import com.example.books_social.domain.shared.ddd.Notification;
 import com.example.books_social.domain.shared.ddd.ValueObject;
