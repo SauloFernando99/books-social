@@ -3,7 +3,7 @@ import java.util.Set;
 
 public class AccountCredentials {
 
-    private Username username;
+    private String username;
     private String password;
     private Set<Authority> authorities;
 
@@ -15,7 +15,7 @@ public class AccountCredentials {
     private boolean isEnabled;
 
     public AccountCredentials(
-            Username username,
+            String username,
             String password,
             Set<Authority> authorities
     ) {
@@ -23,7 +23,7 @@ public class AccountCredentials {
     }
 
     public AccountCredentials(
-            Username username,
+            String username,
             String password,
             Set<Authority> authorities,
             String refreshToken,
@@ -42,7 +42,7 @@ public class AccountCredentials {
         this.isEnabled = isEnabled;
     }
 
-    public Username getUsername() {
+    public String getUsername() {
         return username;
     }
 

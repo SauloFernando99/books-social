@@ -22,7 +22,7 @@ public class UserAccountMapper {
                 .collect(Collectors.toSet());
 
         AccountCredentials credentials = new AccountCredentials(
-                username,
+                username.toString(),
                 dto.password(),
                 authorities,
                 dto.refreshToken(),

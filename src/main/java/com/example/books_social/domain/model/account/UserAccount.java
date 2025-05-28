@@ -24,12 +24,12 @@ public class UserAccount {
         this.email = email;
         this.userPhoto = userPhoto;
         this.createdAt = LocalDateTime.now();
-        this.accountCredentials = new AccountCredentials(username, password, authorities);
+        this.accountCredentials = new AccountCredentials(username.toString(), password, authorities);
     }
 
     public void changeUsername(Username newUsername) {
         this.accountCredentials = new AccountCredentials(
-                newUsername,
+                newUsername.toString(),
                 accountCredentials.getPassword(),
                 accountCredentials.getAuthorities()
         );
@@ -37,7 +37,7 @@ public class UserAccount {
 
     public void changePassword(String newPassword) {
         this.accountCredentials = new AccountCredentials(
-                accountCredentials.getUsername(),
+                accountCredentials.getUsername().toString(),
                 newPassword,
                 accountCredentials.getAuthorities()
         );

@@ -11,7 +11,7 @@ public class UserAccountDbMapper {
 
     public static UserAccountDocument toDocument(UserAccountDto dto) {
         AccountCredentials credentials = new AccountCredentials(
-                new Username(dto.username()),
+                dto.username(),
                 dto.password(),
                 dto.authorities().stream()
                         .map(String::toUpperCase)
