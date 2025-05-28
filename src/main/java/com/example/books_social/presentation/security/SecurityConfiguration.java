@@ -1,4 +1,4 @@
-package com.example.books_social.infrastructure.security;
+package com.example.books_social.presentation.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
