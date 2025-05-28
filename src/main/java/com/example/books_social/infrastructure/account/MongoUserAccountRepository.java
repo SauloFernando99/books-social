@@ -4,5 +4,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.UUID;
 
-public interface MongoAccountRepository extends MongoRepository<UserAccountDocument, UUID> {
+public interface MongoUserAccountRepository extends MongoRepository<UserAccountDocument, UUID> {
 }
