@@ -16,15 +16,17 @@ public class UserAccountDocument {
     @Id
     private UUID id;
     private LocalDateTime createdAt;
+    private String username;
     private String email;
     private String userPhoto;
     private AccountCredentials accountCredentials;
 
     UserAccountDocument() {}
 
-    public UserAccountDocument(UUID id, LocalDateTime createdAt, String email, String userPhoto, AccountCredentials accountCredentials) {
+    public UserAccountDocument(UUID id, LocalDateTime createdAt, String username, String email, String userPhoto, AccountCredentials accountCredentials) {
         this.id = id;
         this.createdAt = createdAt;
+        this.username = username;
         this.email = email;
         this.userPhoto = userPhoto;
         this.accountCredentials = accountCredentials;

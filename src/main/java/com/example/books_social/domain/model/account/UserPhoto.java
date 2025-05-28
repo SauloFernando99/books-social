@@ -1,6 +1,5 @@
 package com.example.books_social.domain.model.account;
 
-import com.example.books_social.domain.model.book.CoverUrl;
 import com.example.books_social.domain.shared.ddd.Notification;
 import com.example.books_social.domain.shared.ddd.ValueObject;
 
@@ -29,12 +28,12 @@ public class UserPhoto extends ValueObject {
         Notification notification = new Notification();
 
         if (value == null || value.isBlank()) {
-            notification.addError("Cover URL must not be blank.");
+            notification.addError("User photo URL must not be blank.");
         } else {
             try {
                 new URL(value);
             } catch (MalformedURLException e) {
-                notification.addError("Cover URL is not a valid URL: " + value);
+                notification.addError("User photo URL is not a valid URL: " + value);
             }
         }
 

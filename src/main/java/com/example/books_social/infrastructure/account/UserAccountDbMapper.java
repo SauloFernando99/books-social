@@ -27,6 +27,7 @@ public class UserAccountDbMapper {
         return new UserAccountDocument(
                 dto.id(),
                 dto.createdAt(),
+                dto.username(),
                 dto.email(),
                 dto.userPhoto(),
                 credentials

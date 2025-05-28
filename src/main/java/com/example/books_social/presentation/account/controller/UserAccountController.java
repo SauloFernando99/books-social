@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class UserController {
+public class UserAccountController {
 
     private final CreateUserAccountServiceImpl createUserAccountService;
 
     @Autowired
-    public UserController(
+    public UserAccountController(
         CreateUserAccountServiceImpl createUserAccountService
     ) {
         this.createUserAccountService = createUserAccountService;

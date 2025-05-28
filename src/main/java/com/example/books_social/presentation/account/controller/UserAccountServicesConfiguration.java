@@ -4,7 +4,9 @@ import com.example.books_social.application.account.create.CreateUserAccountServ
 import com.example.books_social.application.account.repository.UserAccountRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class UserAccountServicesConfiguration {
 
     @Bean

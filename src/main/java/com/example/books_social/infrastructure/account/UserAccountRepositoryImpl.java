@@ -3,7 +3,9 @@ package com.example.books_social.infrastructure.account;
 import com.example.books_social.application.account.repository.UserAccountDto;
 import com.example.books_social.application.account.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserAccountRepositoryImpl implements UserAccountRepository {
     private final MongoUserAccountRepository innerRepository;
 

@@ -24,8 +24,14 @@ public class Username extends ValueObject {
         if (value.isBlank()){
             notification.addError("Username must not be blank");
         } else if (!value.matches("[a-zA-Z0-9-_]*")) {
-            notification.addError("Username must contain only letters and numbers, dashes and underscores!");
+            notification.addError("Username must contain only letters and numbers, dashes and underscores! You sent: "
+            + value + ".");
         }
         return notification;
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }

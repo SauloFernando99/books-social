@@ -35,7 +35,6 @@ public class UserAccountMapper {
         return new UserAccount(
                 userAccountId,
                 email,
-                credentials,
                 username,
                 dto.password(),
                 userPhoto,
@@ -51,7 +50,7 @@ public class UserAccountMapper {
                 user.getEmail().toString(),
                 user.getCreatedAt(),
                 user.getUserPhoto().toString(),
-                credentials.getUsername().toString(),
+                user.getUserName().toString(),
                 credentials.getPassword(),
                 credentials.getAuthorities().stream()
                         .map(Enum::name)
@@ -71,7 +70,6 @@ public class UserAccountMapper {
         return new UserAccount(
             userAccountId,
             new Email(request.email()),
-            new AccountCredentials(new Username(request.username()), request.password(), authorities),
             new Username(request.username()),
             request.password(),
             new UserPhoto(request.userPhoto()),
