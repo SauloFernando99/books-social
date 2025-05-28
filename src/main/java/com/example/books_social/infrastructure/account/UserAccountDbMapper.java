@@ -28,6 +28,7 @@ public class UserAccountDbMapper {
                 dto.id(),
                 dto.createdAt(),
                 dto.email(),
+                dto.userPhoto(),
                 credentials
         );
     }
@@ -39,6 +40,7 @@ public class UserAccountDbMapper {
                 document.getId(),
                 document.getEmail(),
                 document.getCreatedAt(),
+                document.getUserPhoto(),
                 credentials.getUsername().toString(),
                 credentials.getPassword(),
                 credentials.getAuthorities().stream()

@@ -8,6 +8,7 @@ public record UserAccountDto(
     UUID id,
     String email,
     LocalDateTime createdAt,
+    String userPhoto,
 
     String username,
     String password,

@@ -17,14 +17,16 @@ public class UserAccountDocument {
     private UUID id;
     private LocalDateTime createdAt;
     private String email;
+    private String userPhoto;
     private AccountCredentials accountCredentials;
 
     UserAccountDocument() {}
 
-    public UserAccountDocument(UUID id, LocalDateTime createdAt, String email, AccountCredentials accountCredentials) {
+    public UserAccountDocument(UUID id, LocalDateTime createdAt, String email, String userPhoto, AccountCredentials accountCredentials) {
         this.id = id;
         this.createdAt = createdAt;
         this.email = email;
+        this.userPhoto = userPhoto;
         this.accountCredentials = accountCredentials;
     }
 
@@ -50,6 +52,14 @@ public class UserAccountDocument {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
     }
 
     public AccountCredentials getAccountCredentials() {

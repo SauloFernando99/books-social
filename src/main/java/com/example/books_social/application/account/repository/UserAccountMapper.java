@@ -10,6 +10,7 @@ public class UserAccountMapper {
     public static UserAccount fromDto(UserAccountDto dto) {
         UserAccountId userAccountId = new UserAccountId(dto.id());
         Email email = new Email(dto.email());
+        UserPhoto userPhoto = new UserPhoto(dto.userPhoto());
         Username username = new Username(dto.username());
         Set<Authority> authorities = dto.authorities().stream()
                 .map(String::toUpperCase)
@@ -33,6 +34,7 @@ public class UserAccountMapper {
                 credentials,
                 username,
                 dto.password(),
+                userPhoto,
                 authorities
         );
     }
@@ -44,6 +46,7 @@ public class UserAccountMapper {
                 user.getUserAccountId().value(),
                 user.getEmail().toString(),
                 user.getCreatedAt(),
+                user.getUserPhoto().toString(),
                 credentials.getUsername().toString(),
                 credentials.getPassword(),
                 credentials.getAuthorities().stream()

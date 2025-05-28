@@ -7,6 +7,7 @@ public class UserAccount {
     private UserAccountId userAccountId;
     private LocalDateTime createdAt;
     private Email email;
+    private UserPhoto userPhoto;
     private AccountCredentials accountCredentials;
 
     public UserAccount(
@@ -15,10 +16,12 @@ public class UserAccount {
         AccountCredentials accountCredentials,
         Username username,
         String password,
+        UserPhoto userPhoto,
         Set<Authority> authorities
     ) {
         this.userAccountId = userAccountId;
         this.email = email;
+
         this.createdAt = LocalDateTime.now();
         this.accountCredentials = new AccountCredentials(username, password, authorities);
     }
@@ -61,6 +64,14 @@ public class UserAccount {
 
     public void setEmail(Email email) {
         this.email = email;
+    }
+
+    public UserPhoto getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(UserPhoto userPhoto) {
+        this.userPhoto = userPhoto;
     }
 
     public AccountCredentials getAccountCredentials() {
