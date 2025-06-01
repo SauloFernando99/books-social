@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Document(collection = "accounts")
 @Getter
@@ -25,9 +26,11 @@ import java.util.List;
 public class Account implements UserDetails {
 
     @Id
-    private String id;
+    private UUID id;
+    private String username;
     private String email;
     private String password;
+    private String userPhoto;
     private final LocalDateTime creationDate = LocalDateTime.now();
 
     public Account(String email, String password) {
@@ -35,9 +38,62 @@ public class Account implements UserDetails {
         this.password = password;
     }
 
+    public Account(UUID id, String username, String email, String userPhoto, String encryptedPassword) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.userPhoto = userPhoto;
+        this.password = encryptedPassword;
+    }
+
+    public Account(UUID id, String username, String email, String userPhoto) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.userPhoto = userPhoto;
+    }
+
+    public Account() {}
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
     @Override

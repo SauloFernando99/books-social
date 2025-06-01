@@ -8,7 +8,10 @@ public record AccountDto(
     @Email
     String email,
     @NotBlank
+    String username,
+    @NotBlank
+    String userPhoto,
+    @NotBlank
     String password
-
 ){
 }

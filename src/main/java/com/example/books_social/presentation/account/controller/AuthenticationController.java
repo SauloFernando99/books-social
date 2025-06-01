@@ -23,11 +23,25 @@ public class AuthenticationController {
     private BooksTokenService tokenService;
 
     @PostMapping
-    public ResponseEntity signIn(@RequestBody @Valid AccountDto data){
-        var token = new UsernamePasswordAuthenticationToken(data.email(), data.password());
-        var authentication = manager.authenticate(token);
-        var jwtToken = tokenService.generateToken((Account) authentication.getPrincipal());
+    public ResponseEntity<LoginResponse> signIn(@RequestBody @Valid LoginRequest data) {
+        try {
+            var token = new UsernamePasswordAuthenticationToken(data.email(), data.password());
+            var authentication = manager.authenticate(token);
+            var account = (Account) authentication.getPrincipal();
+            var jwtToken = tokenService.generateToken(account);
 
-        return ResponseEntity.ok(new JwtTokenData(jwtToken));
+            var response = new LoginResponse(
+                    jwtToken,
+                    account.getEmail(),
+                    account.getUsername(),
+                    account.getUserPhoto(),
+                    account.getId()
+            );
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            e.printStackTrace(); // 👈 imprime no console
+            return ResponseEntity.status(403).build();
+        }
     }
 }

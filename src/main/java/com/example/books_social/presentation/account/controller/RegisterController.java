@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/register")
 public class RegisterController {
@@ -25,7 +27,8 @@ public class RegisterController {
         }
 
         String encryptedPassword = passwordEncoder.encode(data.password());
-        Account newAccount = new Account(data.email(), encryptedPassword);
+        UUID id = UUID.randomUUID();
+        Account newAccount = new Account(id, data.username(), data.email(), data.userPhoto(), encryptedPassword);
         repository.save(newAccount);
 
         return ResponseEntity.ok().build();
