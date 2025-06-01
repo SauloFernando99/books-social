@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Document(collection = "accounts")
-@Getter
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Account implements UserDetails {
