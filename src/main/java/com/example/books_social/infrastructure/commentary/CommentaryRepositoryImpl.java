@@ -28,7 +28,7 @@ public class CommentaryRepositoryImpl implements CommentaryRepository {
 
     @Override
     public List<CommentaryDto> findAllCommentsByBook(UUID bookId) {
-        return innerRepository.findAllCommentsByBookId(bookId).stream().map(CommentaryDbMapper::toDto).collect(Collectors.toList());
+        return innerRepository.findAllCommentsByBookIdOrderByCreatedAtDesc(bookId).stream().map(CommentaryDbMapper::toDto).collect(Collectors.toList());
     }
 
     @Override

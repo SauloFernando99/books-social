@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface MongoCommentaryRepository extends MongoRepository<CommentaryDocument, UUID> {
-    List<CommentaryDocument> findAllCommentsByBookId(UUID bookId);
+    List<CommentaryDocument> findAllCommentsByBookIdOrderByCreatedAtDesc(UUID bookId);
 }
