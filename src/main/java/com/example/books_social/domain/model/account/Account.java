@@ -20,7 +20,6 @@ import java.util.UUID;
 @Document(collection = "accounts")
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Account implements UserDetails {
@@ -103,7 +102,7 @@ public class Account implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
