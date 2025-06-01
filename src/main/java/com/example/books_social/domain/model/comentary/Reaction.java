@@ -1,13 +1,16 @@
 package com.example.books_social.domain.model.comentary;
 
 public enum Reaction {
-    HAPPY,
-    SAD,
-    ANGRY,
-    LOVE,
+    LOVING,
+    EXCITED,
+    AMAZED,
+    DELUDED,
     LAUGH,
-    SURPRISED,
-    THINKING,
-    COOL,
-    CRYING
+    DISAPPOINTED,
+    CONFUSED,
+    ANGRY,
+    SAD,
+    NAUSEOUS,
+    BORED,
+    AGONY
 }
