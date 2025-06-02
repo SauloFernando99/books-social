@@ -24,7 +24,7 @@ public class BooksTokenService {
             var algorithm =  Algorithm.HMAC256(secret);
              String token = JWT.create()
                      .withIssuer("LORDOFTHERINGS")
-                     .withSubject(account.getUsername())
+                     .withSubject(account.getEmail())
                      .withExpiresAt(expirationDate()).sign(algorithm);
 
              return token;
