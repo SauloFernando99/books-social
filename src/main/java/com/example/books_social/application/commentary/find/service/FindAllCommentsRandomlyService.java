@@ -9,7 +9,10 @@ import java.util.UUID;
 public interface FindAllCommentsRandomlyService {
     void findAllCommentsRandomly(FindAllCommentsRandomlyPresenter presenter, RequestModel request);
 
-    public record RequestModel() {}
+    public record RequestModel(
+        Integer page,
+        Integer size
+    ) {}
 
     public record ResponseModel(
         List<RandomCommentsResponse> comments

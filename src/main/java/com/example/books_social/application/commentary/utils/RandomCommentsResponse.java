@@ -6,8 +6,9 @@ import com.example.books_social.application.reply.repository.ReplyDto;
 
 import java.util.List;
 
-public class RandomCommentsResponse {
-    CommentaryDto commentary;
-    List<ReplyDto> replies;
-    BookDto book;
-}
+public record RandomCommentsResponse(
+        String username,
+        BookDto book,
+        CommentaryDto commentary,
+        List<ReplyDto> replies
+) { }
