@@ -11,7 +11,7 @@ public interface FindAllRepliesService {
     public record RequestModel(UUID commentaryId) {}
     public record ResponseModel(
         UUID commentaryId,
-        Integer numberOdReplies,
+        Integer numberOfReplies,
         List<ReplyDto> replies
     ) {}
 }
