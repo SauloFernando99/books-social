@@ -2,6 +2,7 @@ package com.example.books_social.presentation.reply.controller;
 
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.application.reply.create.CreateReplyServiceImpl;
+import com.example.books_social.application.reply.find.FindAllRepliesServiceImpl;
 import com.example.books_social.application.reply.repository.ReplyRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +24,17 @@ public class ReplyServicesConfiguration {
           replyRepository,
           commentaryRepository,
           uuidGeneratorService
+        );
+    }
+
+    @Bean
+    public FindAllRepliesServiceImpl findAllRepliesService(
+        ReplyRepository replyRepository,
+        CommentaryRepository commentaryRepository
+    ) {
+        return new FindAllRepliesServiceImpl(
+            replyRepository,
+            commentaryRepository
         );
     }
 }
