@@ -1,5 +1,8 @@
 package com.example.books_social.application.reply.repository;
 
+import com.example.books_social.application.commentary.create.CreateCommentaryService;
+import com.example.books_social.application.reply.create.CreateReplyService;
+import com.example.books_social.domain.model.book.BookId;
 import com.example.books_social.domain.model.comentary.*;
 import com.example.books_social.domain.model.reply.Reply;
 import com.example.books_social.domain.model.reply.ReplyId;
@@ -26,4 +29,14 @@ public class ReplyMapper {
             reply.getCreatedAt()
         );
     }
+    public static Reply fromRequestModel(ReplyId replyId, CreateReplyService.RequestModel requestModel) {
+
+        return new Reply(
+            replyId,
+            new CommentaryId(requestModel.commentaryId()),
+            requestModel.userId(),
+            new ReplyText(requestModel.replyText())
+        );
+    }
+
 }

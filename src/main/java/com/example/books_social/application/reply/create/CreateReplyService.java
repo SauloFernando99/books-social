@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CreateReplyService {
-    void createBook(
+    void createReply(
             CreateReplyPresenter createReplyPresenter,
             RequestModel request
     );
 
     public record RequestModel (
-            UUID ownerId,
+            UUID userId,
             UUID commentaryId,
             String replyText
     ) {}
