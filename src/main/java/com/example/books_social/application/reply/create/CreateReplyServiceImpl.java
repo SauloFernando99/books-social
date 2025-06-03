@@ -31,7 +31,7 @@ public class CreateReplyServiceImpl implements CreateReplyService{
         Reply reply = ReplyMapper.fromRequestModel(replyId, request);
         boolean exists = commentaryRepository.existsById(request.commentaryId());
 
-        if (exists) {
+        if (!exists) {
             String message = "There's no commentary of id: " + request.commentaryId() + ".";
             presenter.prepareFailView(new UniquenessViolationException(message));
             return;

@@ -34,8 +34,8 @@ public class ReplyController {
         RestfulCreateReplyPresenter presenter = new RestfulCreateReplyPresenter();
 
         CreateReplyService.RequestModel model = new CreateReplyService.RequestModel(
-                request.commentaryId(),
                 request.userId(),
+                request.commentaryId(),
                 request.replyText()
         );
 
