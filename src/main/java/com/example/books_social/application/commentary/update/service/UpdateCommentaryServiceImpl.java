@@ -1,12 +1,13 @@
-package com.example.books_social.application.commentary.update;
+package com.example.books_social.application.commentary.update.service;
 
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryMapper;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
+import com.example.books_social.application.commentary.update.presenter.UpdateCommentaryPresenter;
 import com.example.books_social.application.shared.exceptions.EntityNotFoundException;
 import com.example.books_social.domain.model.comentary.Commentary;
 
-public class UpdateCommentaryServiceImpl implements UpdateCommentaryService{
+public class UpdateCommentaryServiceImpl implements UpdateCommentaryService {
     private final CommentaryRepository repository;
 
     public UpdateCommentaryServiceImpl(CommentaryRepository repository) {

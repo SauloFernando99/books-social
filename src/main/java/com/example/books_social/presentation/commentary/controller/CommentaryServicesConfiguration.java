@@ -7,7 +7,7 @@ import com.example.books_social.application.commentary.find.service.FindAllComme
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
-import com.example.books_social.application.commentary.update.UpdateCommentaryServiceImpl;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryServiceImpl;
 import com.example.books_social.application.reply.repository.ReplyRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import com.example.books_social.infrastructure.account.AccountRepository;

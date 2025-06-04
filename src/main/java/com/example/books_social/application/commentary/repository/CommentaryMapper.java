@@ -1,7 +1,7 @@
 package com.example.books_social.application.commentary.repository;
 
 import com.example.books_social.application.commentary.create.CreateCommentaryService;
-import com.example.books_social.application.commentary.update.UpdateCommentaryService;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryService;
 import com.example.books_social.domain.model.book.BookId;
 import com.example.books_social.domain.model.comentary.*;
 import com.example.books_social.presentation.commentary.requests.PutRequest;

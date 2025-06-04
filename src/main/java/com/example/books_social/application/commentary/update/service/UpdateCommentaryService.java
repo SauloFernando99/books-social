@@ -1,6 +1,7 @@
-package com.example.books_social.application.commentary.update;
+package com.example.books_social.application.commentary.update.service;
 
 import com.example.books_social.application.commentary.repository.CommentaryDto;
+import com.example.books_social.application.commentary.update.presenter.UpdateCommentaryPresenter;
 
 import java.util.UUID;
 

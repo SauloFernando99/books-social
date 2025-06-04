@@ -1,8 +1,8 @@
 package com.example.books_social.presentation.commentary.presenter;
 
 import com.example.books_social.application.commentary.repository.CommentaryDto;
-import com.example.books_social.application.commentary.update.UpdateCommentaryPresenter;
-import com.example.books_social.application.commentary.update.UpdateCommentaryService;
+import com.example.books_social.application.commentary.update.presenter.UpdateCommentaryPresenter;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryService;
 import com.example.books_social.presentation.shared.error.ErrorResponseEntityFactory;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;

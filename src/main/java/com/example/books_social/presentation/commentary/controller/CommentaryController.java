@@ -5,10 +5,9 @@ import com.example.books_social.application.commentary.create.CreateCommentarySe
 import com.example.books_social.application.commentary.delete.DeleteCommentaryService;
 import com.example.books_social.application.commentary.delete.DeleteCommentaryServiceImpl;
 import com.example.books_social.application.commentary.find.service.*;
-import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryMapper;
-import com.example.books_social.application.commentary.update.UpdateCommentaryService;
-import com.example.books_social.application.commentary.update.UpdateCommentaryServiceImpl;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryService;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryServiceImpl;
 import com.example.books_social.presentation.commentary.presenter.*;
 import com.example.books_social.presentation.commentary.requests.PostRequest;
 import com.example.books_social.presentation.commentary.requests.PutRequest;
