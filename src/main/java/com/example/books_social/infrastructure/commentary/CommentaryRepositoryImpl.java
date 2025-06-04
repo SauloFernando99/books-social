@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.stereotype.Repository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -65,23 +66,31 @@ public class CommentaryRepositoryImpl implements CommentaryRepository {
 
     @Override
     public Page<CommentaryDto> findCommentaryRandomly(Pageable pageable) {
-        int pageSize = pageable.getPageSize();
+        final String seed = "4062025";
 
-        // Sorteia exatamente a quantidade pedida (ex: 10)
-        Aggregation agg = Aggregation.newAggregation(
-                Aggregation.sample(pageSize)
-        );
+        // Busca todos os documentos
+        List<CommentaryDocument> allDocs = mongoTemplate.findAll(CommentaryDocument.class);
 
-        List<CommentaryDocument> sampledDocuments = mongoTemplate
-                .aggregate(agg, CommentaryDocument.class, CommentaryDocument.class)
-                .getMappedResults();
+        // Ordena os documentos pela combinação do hash do UUID com a seed
+        List<CommentaryDocument> sorted = allDocs.stream()
+                .sorted(Comparator.comparingLong(doc -> {
+                    String combined = doc.getId().toString() + seed;
+                    long hash = 1125899906842597L; // primo grande inicial
+                    for (int i = 0; i < combined.length(); i++) {
+                        hash = 31 * hash + combined.charAt(i);
+                    }
+                    return Math.abs(hash);
+                }))
+                .collect(Collectors.toList());
 
-        List<CommentaryDto> dtos = sampledDocuments.stream()
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), sorted.size());
+
+        List<CommentaryDto> dtos = sorted.subList(start, end).stream()
                 .map(CommentaryDbMapper::toDto)
                 .collect(Collectors.toList());
 
-        // Como não temos o total de elementos, usamos o próprio tamanho como total
-        return new PageImpl<>(dtos, pageable, dtos.size());
+        return new PageImpl<>(dtos, pageable, sorted.size());
     }
 
 }
