@@ -26,7 +26,7 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
         
         Integer likes = null;
 
-        if (request.action().equals("Increase")) {
+        if (request.action().equals("increase")) {
             CommentaryDto updated = new CommentaryDto(
                 original.commentaryId(),
                 original.bookId(),
@@ -38,9 +38,11 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
                 original.createdAt());
             
             likes = updated.likes();
+
+            repository.saveOrUpdate(updated);
         }
 
-        if (request.action().equals("Reduce")) {
+        if (request.action().equals("reduce")) {
             if (original.likes() == 0) {
                 throw new IllegalArgumentException("Unable to reduce likes count");
             }
@@ -55,6 +57,8 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
                     original.createdAt());
 
             likes = updated.likes();
+
+            repository.saveOrUpdate(updated);
         }
         
         presenter.prepareSuccessView(

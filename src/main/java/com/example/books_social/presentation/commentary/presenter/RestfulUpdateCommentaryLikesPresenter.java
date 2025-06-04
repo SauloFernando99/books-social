@@ -4,6 +4,7 @@ import com.example.books_social.application.commentary.update.presenter.UpdateCo
 import com.example.books_social.application.commentary.update.service.UpdateCommentaryLikesService;
 import com.example.books_social.presentation.shared.error.ErrorResponseEntityFactory;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
@@ -21,6 +22,8 @@ public class RestfulUpdateCommentaryLikesPresenter implements UpdateCommentaryLi
             response.commentaryId(),
             response.likes()
         );
+
+        responseEntity = ResponseEntity.status(HttpStatus.OK).body(restfulResponse);
     }
 
     @Override

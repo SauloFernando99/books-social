@@ -6,6 +6,8 @@ import com.example.books_social.application.commentary.delete.DeleteCommentarySe
 import com.example.books_social.application.commentary.delete.DeleteCommentaryServiceImpl;
 import com.example.books_social.application.commentary.find.service.*;
 import com.example.books_social.application.commentary.repository.CommentaryMapper;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryLikesService;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryLikesServiceImpl;
 import com.example.books_social.application.commentary.update.service.UpdateCommentaryService;
 import com.example.books_social.application.commentary.update.service.UpdateCommentaryServiceImpl;
 import com.example.books_social.presentation.commentary.presenter.*;
@@ -27,15 +29,17 @@ public class CommentaryController {
     private final FindAllCommentsRandomlyServiceImpl findAllCommentsRandomlyService;
     private final DeleteCommentaryServiceImpl deleteCommentaryService;
     private final UpdateCommentaryServiceImpl updateCommentaryService;
+    private final UpdateCommentaryLikesServiceImpl updateCommentaryLikesService;
 
     @Autowired
     public CommentaryController(
-            CreateCommentaryServiceImpl createCommentaryService,
-            FindAllCommentsServiceImpl findAllCommentsService,
-            FindCommentaryServiceImpl findCommentaryService,
-            FindAllCommentsRandomlyServiceImpl findAllCommentsRandomlyService,
-            DeleteCommentaryServiceImpl deleteCommentaryService,
-            UpdateCommentaryServiceImpl updateCommentaryService
+        CreateCommentaryServiceImpl createCommentaryService,
+        FindAllCommentsServiceImpl findAllCommentsService,
+        FindCommentaryServiceImpl findCommentaryService,
+        FindAllCommentsRandomlyServiceImpl findAllCommentsRandomlyService,
+        DeleteCommentaryServiceImpl deleteCommentaryService,
+        UpdateCommentaryServiceImpl updateCommentaryService,
+        UpdateCommentaryLikesServiceImpl updateCommentaryLikesService
     ) {
         this.createCommentaryService = createCommentaryService;
         this.findAllCommentsService = findAllCommentsService;
@@ -43,6 +47,7 @@ public class CommentaryController {
         this.findAllCommentsRandomlyService = findAllCommentsRandomlyService;
         this.deleteCommentaryService = deleteCommentaryService;
         this.updateCommentaryService = updateCommentaryService;
+        this.updateCommentaryLikesService = updateCommentaryLikesService;
     }
 
     @PostMapping
@@ -117,6 +122,21 @@ public class CommentaryController {
         );
 
         updateCommentaryService.updateCommentary(presenter, viewModel);
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @PutMapping("/like/{commentaryId}/{action}")
+    public ResponseEntity<?> updateLikes(@PathVariable UUID commentaryId, @PathVariable String action) {
+        RestfulUpdateCommentaryLikesPresenter presenter = new RestfulUpdateCommentaryLikesPresenter();
+        UpdateCommentaryLikesService.RequestModel request = new UpdateCommentaryLikesService.RequestModel(
+            commentaryId,
+            action
+        );
+
+        updateCommentaryLikesService.updateLikes(presenter, request);
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
