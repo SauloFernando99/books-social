@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FindAllCommentsRandomlyServiceImpl implements FindAllCommentsRandomlyService {
     private final CommentaryRepository repository;
@@ -44,12 +45,13 @@ public class FindAllCommentsRandomlyServiceImpl implements FindAllCommentsRandom
         List<RandomCommentsResponse> randomComments = new ArrayList<>();
 
         for (CommentaryDto commentaryDto: commentaryPage){
-            AccountDto accountDto = accountRepository.findById(commentaryDto.userId());
+            Optional<AccountDto> accountDto = accountRepository.findById(commentaryDto.userId());
+            String username = accountDto.map(AccountDto::username).orElse("USER NOT FOUND");
             BookDto bookDto = bookRepository.findById(commentaryDto.bookId());
             List<ReplyDto> replies = replyRepository.findAllByCommentaryId(commentaryDto.commentaryId());
 
             RandomCommentsResponse commentary = new RandomCommentsResponse(
-                accountDto.username(),
+                username,
                 bookDto,
                 commentaryDto,
                 replies
