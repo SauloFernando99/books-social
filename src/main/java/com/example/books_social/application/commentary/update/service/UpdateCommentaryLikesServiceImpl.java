@@ -42,7 +42,7 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
             repository.saveOrUpdate(updated);
         }
 
-        if (request.action().equals("reduce")) {
+        if (request.action().equals("decrease")) {
             if (original.likes() == 0) {
                 throw new IllegalArgumentException("Unable to reduce likes count");
             }
@@ -60,7 +60,7 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
 
             repository.saveOrUpdate(updated);
         }
-        
+
         presenter.prepareSuccessView(
             new ResponseModel(
                 original.commentaryId(),
