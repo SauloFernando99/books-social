@@ -13,7 +13,7 @@ public interface UpdateCommentaryLikesService {
     );
 
     public record RequestModel(
-        CommentaryId commentaryId,
+        UUID commentaryId,
         String action
     ) {}
 
