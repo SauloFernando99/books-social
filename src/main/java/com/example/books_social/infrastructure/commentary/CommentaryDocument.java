@@ -19,6 +19,7 @@ public class CommentaryDocument {
     private String commentaryText;
     private Integer progress;
     private String reaction;
+    private Integer likes;
     private LocalDateTime createdAt;
 
     public CommentaryDocument(
@@ -28,6 +29,7 @@ public class CommentaryDocument {
         String commentaryText,
         Integer progress,
         String reaction,
+        Integer likes,
         LocalDateTime createdAt
     ) {
         this.id = id;
@@ -36,6 +38,7 @@ public class CommentaryDocument {
         this.commentaryText = commentaryText;
         this.progress = progress;
         this.reaction = reaction;
+        this.likes = likes;
         this.createdAt = createdAt;
     }
 
@@ -85,6 +88,14 @@ public class CommentaryDocument {
 
     public void setReaction(String reaction) {
         this.reaction = reaction;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
     }
 
     public LocalDateTime getCreatedAt() {

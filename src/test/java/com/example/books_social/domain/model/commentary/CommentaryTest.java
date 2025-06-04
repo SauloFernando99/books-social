@@ -41,7 +41,7 @@ class CommentaryTest {
         Reaction reaction = Reaction.DELUDED;
         LocalDateTime now = LocalDateTime.now();
 
-        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText, progress, reaction, now);
+        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText, progress, reaction, 0, now);
 
         assertEquals(now, commentary.getCreatedAt());
     }

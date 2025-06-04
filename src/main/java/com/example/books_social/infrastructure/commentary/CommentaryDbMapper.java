@@ -11,6 +11,7 @@ public class CommentaryDbMapper {
                 dto.commentaryText(),
                 dto.progress(),
                 dto.reaction(),
+                dto.likes(),
                 dto.createdAt()
         );
     }
@@ -23,6 +24,7 @@ public class CommentaryDbMapper {
             document.getCommentaryText(),
             document.getProgress(),
             document.getReaction(),
+            document.getLikes(),
             document.getCreatedAt()
         );
     }

@@ -12,6 +12,7 @@ public class Commentary {
     private CommentaryText commentaryText;
     private Progress progress;
     private Reaction reaction;
+    private Integer likes = 0;
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public Commentary(
@@ -20,6 +21,7 @@ public class Commentary {
         CommentaryText commentaryText,
         Progress progress,
         Reaction reaction,
+        Integer likes,
         LocalDateTime createdAt
     ) {
         this.commentaryId = commentaryId;
@@ -28,6 +30,7 @@ public class Commentary {
         this.commentaryText = commentaryText;
         this.progress = progress;
         this.reaction = reaction;
+        this.likes = likes;
         this.createdAt = createdAt;
     }
 
@@ -85,6 +88,14 @@ public class Commentary {
 
     public void setProgress(Progress progress) {
         this.progress = progress;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
     }
 
     public Reaction getReaction() {

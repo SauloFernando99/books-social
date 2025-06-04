@@ -10,5 +10,6 @@ public record CommentaryDto(
         String commentaryText,
         Integer progress,
         String reaction,
+        Integer likes,
         LocalDateTime createdAt
 ) {}
