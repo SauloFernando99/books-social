@@ -7,6 +7,7 @@ import com.example.books_social.application.commentary.find.service.FindAllComme
 import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
 import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
+import com.example.books_social.application.commentary.update.service.UpdateCommentaryLikesServiceImpl;
 import com.example.books_social.application.commentary.update.service.UpdateCommentaryServiceImpl;
 import com.example.books_social.application.reply.repository.ReplyRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
@@ -83,6 +84,15 @@ public class CommentaryServicesConfiguration {
             bookRepository,
             accountRepository,
             replyRepository
+        );
+    }
+
+    @Bean
+    public UpdateCommentaryLikesServiceImpl updateCommentaryLikesService(
+        CommentaryRepository commentaryRepository
+    ) {
+        return new UpdateCommentaryLikesServiceImpl(
+            commentaryRepository
         );
     }
 }
