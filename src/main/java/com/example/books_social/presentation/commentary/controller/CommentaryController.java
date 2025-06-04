@@ -4,10 +4,7 @@ import com.example.books_social.application.commentary.create.CreateCommentarySe
 import com.example.books_social.application.commentary.create.CreateCommentaryServiceImpl;
 import com.example.books_social.application.commentary.delete.DeleteCommentaryService;
 import com.example.books_social.application.commentary.delete.DeleteCommentaryServiceImpl;
-import com.example.books_social.application.commentary.find.service.FindAllCommentsService;
-import com.example.books_social.application.commentary.find.service.FindAllCommentsServiceImpl;
-import com.example.books_social.application.commentary.find.service.FindCommentaryService;
-import com.example.books_social.application.commentary.find.service.FindCommentaryServiceImpl;
+import com.example.books_social.application.commentary.find.service.*;
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryMapper;
 import com.example.books_social.application.commentary.update.UpdateCommentaryService;
@@ -28,20 +25,23 @@ public class CommentaryController {
     private final CreateCommentaryServiceImpl createCommentaryService;
     private final FindAllCommentsServiceImpl findAllCommentsService;
     private final FindCommentaryServiceImpl findCommentaryService;
+    private final FindAllCommentsRandomlyServiceImpl findAllCommentsRandomlyService;
     private final DeleteCommentaryServiceImpl deleteCommentaryService;
     private final UpdateCommentaryServiceImpl updateCommentaryService;
 
     @Autowired
     public CommentaryController(
-        CreateCommentaryServiceImpl createCommentaryService,
-        FindAllCommentsServiceImpl findAllCommentsService,
-        FindCommentaryServiceImpl findCommentaryService,
-        DeleteCommentaryServiceImpl deleteCommentaryService,
-        UpdateCommentaryServiceImpl updateCommentaryService
+            CreateCommentaryServiceImpl createCommentaryService,
+            FindAllCommentsServiceImpl findAllCommentsService,
+            FindCommentaryServiceImpl findCommentaryService,
+            FindAllCommentsRandomlyServiceImpl findAllCommentsRandomlyService,
+            DeleteCommentaryServiceImpl deleteCommentaryService,
+            UpdateCommentaryServiceImpl updateCommentaryService
     ) {
         this.createCommentaryService = createCommentaryService;
         this.findAllCommentsService = findAllCommentsService;
         this.findCommentaryService = findCommentaryService;
+        this.findAllCommentsRandomlyService = findAllCommentsRandomlyService;
         this.deleteCommentaryService = deleteCommentaryService;
         this.updateCommentaryService = updateCommentaryService;
     }
@@ -81,6 +81,17 @@ public class CommentaryController {
         RestfulFindCommentaryPresenter presenter = new RestfulFindCommentaryPresenter();
 
         findCommentaryService.findCommentary(presenter, new FindCommentaryService.RequestModel(commentaryId));
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @GetMapping("/{page}/{size}")
+    public ResponseEntity<?> findAllRandomly(@PathVariable Integer page, @PathVariable Integer size) {
+        RestfulFindAllCommentsRandomlyPresenter presenter = new RestfulFindAllCommentsRandomlyPresenter();
+
+        findAllCommentsRandomlyService.findAllCommentsRandomly(presenter, new FindAllCommentsRandomlyService.RequestModel(page, size));
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
