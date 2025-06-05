@@ -91,11 +91,11 @@ public class CommentaryController {
                 : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    @GetMapping("random/{page}/{size}")
-    public ResponseEntity<?> findAllRandomly(@PathVariable Integer page, @PathVariable Integer size) {
+    @GetMapping("random")
+    public ResponseEntity<?> findAllRandomly() {
         RestfulFindAllCommentsRandomlyPresenter presenter = new RestfulFindAllCommentsRandomlyPresenter();
 
-        findAllCommentsRandomlyService.findAllCommentsRandomly(presenter, new FindAllCommentsRandomlyService.RequestModel(page, size));
+        findAllCommentsRandomlyService.findAllCommentsRandomly(presenter, new FindAllCommentsRandomlyService.RequestModel());
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()

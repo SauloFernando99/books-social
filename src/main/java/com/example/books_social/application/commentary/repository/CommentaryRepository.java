@@ -14,5 +14,5 @@ public interface CommentaryRepository {
     boolean existsById(UUID commentaryId);
     void deleteById(UUID commentaryId);
     void saveOrUpdate(CommentaryDto dto);
-    Page<CommentaryDto> findCommentaryRandomly(Pageable pageable);
+    List<CommentaryDto> findCommentaryRandomly();
 }

@@ -39,12 +39,11 @@ public class FindAllCommentsRandomlyServiceImpl implements FindAllCommentsRandom
 
     @Override
     public void findAllCommentsRandomly(FindAllCommentsRandomlyPresenter presenter, RequestModel request) {
-        Pageable pageable = PageRequest.of(request.page(), request.size());
-        Page<CommentaryDto> commentaryPage = repository.findCommentaryRandomly(pageable);
+        List<CommentaryDto> random = repository.findCommentaryRandomly();
 
         List<RandomCommentsResponse> randomComments = new ArrayList<>();
 
-        for (CommentaryDto commentaryDto: commentaryPage){
+        for (CommentaryDto commentaryDto: random){
             Optional<AccountDto> accountDto = accountRepository.findById(commentaryDto.userId());
             String username = accountDto.map(AccountDto::username).orElse("USER NOT FOUND");
             BookDto bookDto = bookRepository.findById(commentaryDto.bookId());

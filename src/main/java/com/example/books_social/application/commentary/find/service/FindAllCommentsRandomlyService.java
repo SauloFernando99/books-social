@@ -10,8 +10,6 @@ public interface FindAllCommentsRandomlyService {
     void findAllCommentsRandomly(FindAllCommentsRandomlyPresenter presenter, RequestModel request);
 
     public record RequestModel(
-        Integer page,
-        Integer size
     ) {}
 
     public record ResponseModel(
