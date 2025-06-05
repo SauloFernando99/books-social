@@ -1,6 +1,7 @@
 package com.example.books_social.application.book.update.service;
 
 import com.example.books_social.application.book.update.presenter.UpdateBookPresenter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ public interface UpdateBookService {
         RequestModel request
     );
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public record RequestModel (
             UUID bookId,
             String title,
@@ -27,7 +29,7 @@ public interface UpdateBookService {
             Integer numberPages,
             String readingStatus,
             List<String> bookTypes,
-            boolean isFavorite
+            Boolean isFavorite
     ) {}
 
     public record ResponseModel(

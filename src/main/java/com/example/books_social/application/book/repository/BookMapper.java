@@ -6,6 +6,8 @@ import com.example.books_social.domain.model.book.*;
 import com.example.books_social.presentation.book.requests.PutRequest;
 import lombok.val;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -118,27 +120,61 @@ public class BookMapper {
 
     public static Book updateFrom(BookDto original, UpdateBookService.RequestModel request) {
         Genre genre = Genre.valueOf(request.genre() != null ? request.genre() : original.genre());
-        Rating rating = new Rating(request.rating() != null ? request.rating() : original.rating());
+        Integer ratingValue = request.rating() != null
+                ? request.rating()
+                : (original.rating() != null ? original.rating() : 1);
+
+        Rating rating = new Rating(ratingValue);
         CoverUrl coverUrl = new CoverUrl(request.coverUrl() != null ? request.coverUrl() : original.coverUrl());
-        NumberPages numberPages = new NumberPages(request.numberPages() != null ? request.numberPages() : original.numberPages());
+        Integer pages = request.numberPages() != null
+                ? request.numberPages()
+                : (original.numberPages() != null ? original.numberPages() : 1);
+
+        NumberPages numberPages = new NumberPages(pages);
         ReadingStatus readingStatus = ReadingStatus.valueOf(request.readingStatus() != null ? request.readingStatus() : original.readingStatus());
         List<BookType> bookTypes = parseBookTypes(request.bookTypes() != null ? request.bookTypes() : original.bookTypes());
+        Boolean isFavorite = request.isFavorite() != null ? request.isFavorite() : original.isFavorite();
+        String review = request.review() != null ? request.review() : original.review();
+        LocalDate endDate = request.endDate() != null ? request.endDate() : original.endDate();
+        LocalDate startDate = request.startDate() != null ? request.startDate(): original.startDate();
+        String favoriteCharacter = request.favoriteCharacter() != null ? request.favoriteCharacter() : original.favoriteCharacter();
+
+        // Se estiver lendo, esses campos devem ser anulados
+        if (readingStatus == ReadingStatus.READING) {
+            review = null;
+            endDate = null;
+            favoriteCharacter = null;
+            rating = null;
+            isFavorite = false;
+        }
+
+        // Se estiver na wishlist, esses campos devem ser anulados
+        if (readingStatus == ReadingStatus.WISHLIST) {
+            review = null;
+            startDate = null;
+            endDate = null;
+            favoriteCharacter = null;
+            rating = null;
+            isFavorite = false;
+            bookTypes = new ArrayList<>();
+        }
+
         return new Book(
                 new BookId(original.bookId()),
                 original.ownerId(),
                 request.title() != null ? request.title() : original.title(),
                 request.author() != null ? request.author() : original.author(),
                 genre,
-                request.startDate() != null ? request.startDate() : original.startDate(),
-                request.endDate() != null ? request.endDate() : original.endDate(),
-                request.review() != null ? request.review() : original.review(),
-                request.favoriteCharacter() != null ? request.favoriteCharacter() : original.favoriteCharacter(),
+                startDate,
+                endDate,
+                review,
+                favoriteCharacter,
                 rating,
                 coverUrl,
                 numberPages,
                 readingStatus,
                 bookTypes,
-                request.isFavorite(),
+                isFavorite,
                 original.createdAt()
         );
     }
