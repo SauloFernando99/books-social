@@ -3,7 +3,7 @@ package com.example.books_social.infrastructure.book;
 import com.example.books_social.application.book.repository.BookDto;
 
 public class BookDbMapper {
-    public static BookDocument toDocument (BookDto dto) {
+    public static BookDocument toDocument(BookDto dto) {
         return new BookDocument(
             dto.bookId(),
             dto.ownerId(),
@@ -14,7 +14,7 @@ public class BookDbMapper {
             dto.endDate(),
             dto.review(),
             dto.favoriteCharacter(),
-            dto.rating(),
+            dto.rating() != null ? dto.rating() : null,
             dto.coverUrl(),
             dto.numberPages(),
             dto.readingStatus(),

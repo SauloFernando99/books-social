@@ -112,8 +112,68 @@ public class Book {
     private Notification validate() {
         Notification notification = new Notification();
 
-        if (author == null || author.isBlank()) { notification.addError("Author is required."); }
-        if (title == null || title.isBlank()) { notification.addError("Title is required."); }
+        switch (readingStatus) {
+            case READING -> {
+                if (review != null && !review.isBlank()) {
+                    notification.addError("Review should not be present when status is READING.");
+                }
+                if (endDate != null) {
+                    notification.addError("End date should not be present when status is READING.");
+                }
+                if (favoriteCharacter != null && !favoriteCharacter.isBlank()) {
+                    notification.addError("Favorite character should not be present when status is READING.");
+                }
+                if (rating != null) {
+                    notification.addError("Rating should not be present when status is READING.");
+                }
+                if (isFavorite) {
+                    notification.addError("Book cannot be marked as favorite when status is READING.");
+                }
+            }
+            case FINISHED -> {
+                if (startDate == null) {
+                    notification.addError("Start date must be provided when status is FINISHED.");
+                }
+                if (endDate == null) {
+                    notification.addError("End date must be provided when status is FINISHED.");
+                }
+                if (review == null || review.isBlank()) {
+                    notification.addError("Review must be provided when status is FINISHED.");
+                }
+                if (favoriteCharacter == null || favoriteCharacter.isBlank()) {
+                    notification.addError("Favorite character must be provided when status is FINISHED.");
+                }
+                if (rating == null) {
+                    notification.addError("Rating must be provided when status is FINISHED.");
+                }
+                if (bookTypes == null || bookTypes.isEmpty()) {
+                    notification.addError("At least one book type must be provided when status is FINISHED.");
+                }
+            }
+            case WISHLIST -> {
+                if (startDate != null) {
+                    notification.addError("Start date should not be present when status is WISHLIST.");
+                }
+                if (endDate != null) {
+                    notification.addError("End date should not be present when status is WISHLIST.");
+                }
+                if (review != null && !review.isBlank()) {
+                    notification.addError("Review should not be present when status is WISHLIST.");
+                }
+                if (favoriteCharacter != null && !favoriteCharacter.isBlank()) {
+                    notification.addError("Favorite character should not be present when status is WISHLIST.");
+                }
+                if (rating != null) {
+                    notification.addError("Rating should not be present when status is WISHLIST.");
+                }
+                if (bookTypes != null && !bookTypes.isEmpty()) {
+                    notification.addError("Book types should not be present when status is WISHLIST.");
+                }
+                if (isFavorite) {
+                    notification.addError("Book cannot be marked as favorite when status is WISHLIST.");
+                }
+            }
+        }
 
         return notification;
     }

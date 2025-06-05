@@ -25,9 +25,9 @@ public class BookDocument {
     private LocalDate endDate;
     private String review;
     private String favoriteCharacter;
-    private int rating;
+    private Integer rating;
     private String coverUrl;
-    private int numberPages;
+    private Integer numberPages;
     private String readingStatus;
     private List<String> bookTypes;
     private boolean isFavorite;
@@ -45,9 +45,9 @@ public class BookDocument {
             LocalDate endDate,
             String review,
             String favoriteCharacter,
-            int rating,
+            Integer rating,
             String coverUrl,
-            int numberPages,
+            Integer numberPages,
             String readingStatus,
             List<String> bookTypes,
             boolean isFavorite,
@@ -143,11 +143,11 @@ public class BookDocument {
         this.favoriteCharacter = favoriteCharacter;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
@@ -159,11 +159,11 @@ public class BookDocument {
         this.coverUrl = coverUrl;
     }
 
-    public int getNumberPages() {
+    public Integer getNumberPages() {
         return numberPages;
     }
 
-    public void setNumberPages(int numberPages) {
+    public void setNumberPages(Integer numberPages) {
         this.numberPages = numberPages;
     }
 

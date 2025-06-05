@@ -4,6 +4,7 @@ import com.example.books_social.application.book.create.CreateBookService;
 import com.example.books_social.application.book.update.service.UpdateBookService;
 import com.example.books_social.domain.model.book.*;
 import com.example.books_social.presentation.book.requests.PutRequest;
+import lombok.val;
 
 import java.util.Collections;
 import java.util.List;
@@ -42,16 +43,18 @@ public class BookMapper {
             book.getOwnerId(),
             book.getTitle(),
             book.getAuthor(),
-            book.getGenre().name()  ,
+            book.getGenre().name(),
             book.getStartDate(),
             book.getEndDate(),
             book.getReview(),
             book.getFavoriteCharacter(),
-            book.getRating().value(),
-            book.getCoverUrl().toString(),
-            book.getNumberPages().value(),
+            book.getRating() != null ? book.getRating().value() : null,
+            book.getCoverUrl() != null ? book.getCoverUrl().value() : null,
+            book.getNumberPages() != null ? book.getNumberPages().value() : null,
             book.getReadingStatus().name(),
-            book.getBookTypes().stream().map(Enum::name).toList(),
+                book.getBookTypes() != null
+                    ? book.getBookTypes().stream().map(Enum::name).toList()
+                    : null,
             book.isFavorite(),
             book.getCreatedAt()
         );
@@ -61,24 +64,38 @@ public class BookMapper {
         Genre genre = Genre.valueOf(requestModel.genre());
         ReadingStatus readingStatus = ReadingStatus.valueOf(requestModel.readingStatus());
         List<BookType> bookTypes = parseBookTypes(requestModel.bookTypes());
+
+        NumberPages numberPages = requestModel.numberPages() != null
+                ? new NumberPages(requestModel.numberPages())
+                : null;
+
+        Rating rating = requestModel.rating() != null
+                ? new Rating(requestModel.rating())
+                : null;
+
+        CoverUrl coverUrl = requestModel.coverUrl() != null && !requestModel.coverUrl().isBlank()
+                ? new CoverUrl(requestModel.coverUrl())
+                : null;
+
         return new Book(
-            bookId,
-            requestModel.ownerId(),
-            requestModel.title(),
-            requestModel.author(),
-            genre,
-            requestModel.startDate(),
-            requestModel.endDate(),
-            requestModel.review(),
-            requestModel.favoriteCharacter(),
-            new Rating(requestModel.rating()),
-            new CoverUrl(requestModel.coverUrl()),
-            new NumberPages(requestModel.numberPages()),
-            readingStatus,
-            bookTypes,
-            requestModel.isFavorite()
+                bookId,
+                requestModel.ownerId(),
+                requestModel.title(),
+                requestModel.author(),
+                genre,
+                requestModel.startDate(),
+                requestModel.endDate(),
+                requestModel.review(),
+                requestModel.favoriteCharacter(),
+                rating,
+                coverUrl,
+                numberPages,
+                readingStatus,
+                bookTypes,
+                requestModel.isFavorite()
         );
     }
+
 
     public static UpdateBookService.RequestModel toUpdatedRequestModel(UUID bookId, PutRequest request) {
         return new UpdateBookService.RequestModel(
