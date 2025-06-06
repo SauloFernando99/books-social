@@ -128,7 +128,7 @@ public class CommentaryController {
                 : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    @PutMapping("/like/{commentaryId}/{action}/{userId}")
+    @PatchMapping("/like/{commentaryId}/{action}/{userId}")
     public ResponseEntity<?> updateLikes(
         @PathVariable UUID commentaryId, @PathVariable String action, @PathVariable UUID userId
     ) {
