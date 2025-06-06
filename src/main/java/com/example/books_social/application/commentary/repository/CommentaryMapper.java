@@ -58,21 +58,21 @@ public class CommentaryMapper {
         return new UpdateCommentaryService.RequestModel(
             commentaryId,
             request.commentaryText(),
-            request.progress(),
+            request.readPages(),
             request.reaction()
         );
     }
 
-    public static Commentary updateFrom(CommentaryDto original, UpdateCommentaryService.RequestModel request) {
+    public static Commentary updateFrom(CommentaryDto original, Integer progressPercentage, UpdateCommentaryService.RequestModel request) {
         CommentaryText commentaryText = new CommentaryText(request.CommentaryText() != null ? request.CommentaryText() : original.commentaryText());
-        Progress progress = new Progress(request.progress() != null ? request.progress() : original.progress());
+        Progress progress = new Progress(progressPercentage != null ? progressPercentage : original.progress());
         Reaction reaction = Reaction.valueOf(request.reaction() != null ? request.reaction() : original.reaction());
         return new Commentary(
             new CommentaryId(original.commentaryId()),
             new BookId(original.bookId()),
             original.userId(),
             commentaryText,
-            original.readPages(),
+            request.readPages() != null ? request.readPages() : original.readPages(),
             progress,
             reaction
         );

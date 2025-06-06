@@ -65,10 +65,12 @@ public class CommentaryServicesConfiguration {
 
     @Bean
     public UpdateCommentaryServiceImpl updateCommentaryService(
-        CommentaryRepository commentaryRepository
+        CommentaryRepository commentaryRepository,
+        BookRepository bookRepository
     ) {
         return new UpdateCommentaryServiceImpl(
-          commentaryRepository
+            commentaryRepository,
+            bookRepository
         );
     }
 

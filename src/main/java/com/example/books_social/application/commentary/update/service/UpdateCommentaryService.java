@@ -14,7 +14,7 @@ public interface UpdateCommentaryService {
     public record RequestModel(
        UUID commentaryId,
        String CommentaryText,
-       Integer progress,
+       Integer readPages,
        String reaction
     ) {}
 

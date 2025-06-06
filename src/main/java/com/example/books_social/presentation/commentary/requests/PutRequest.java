@@ -2,7 +2,7 @@ package com.example.books_social.presentation.commentary.requests;
 
 public record PutRequest(
     String commentaryText,
-    Integer progress,
+    Integer readPages,
     String reaction
 ) {
 }
