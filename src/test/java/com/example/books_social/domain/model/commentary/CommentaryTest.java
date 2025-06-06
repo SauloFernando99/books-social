@@ -5,6 +5,8 @@ import com.example.books_social.domain.model.comentary.*;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,8 +42,9 @@ class CommentaryTest {
         Progress progress = new Progress(50);
         Reaction reaction = Reaction.DELUDED;
         LocalDateTime now = LocalDateTime.now();
+        List<UUID> list = new ArrayList<>();
 
-        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText, progress, reaction, 0, now);
+        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText, progress, reaction, 0, list, now);
 
         assertEquals(now, commentary.getCreatedAt());
     }
