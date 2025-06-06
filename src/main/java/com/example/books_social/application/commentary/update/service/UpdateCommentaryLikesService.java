@@ -14,6 +14,7 @@ public interface UpdateCommentaryLikesService {
 
     public record RequestModel(
         UUID commentaryId,
+        UUID userId,
         String action
     ) {}
 

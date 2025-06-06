@@ -128,11 +128,14 @@ public class CommentaryController {
                 : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    @PutMapping("/like/{commentaryId}/{action}")
-    public ResponseEntity<?> updateLikes(@PathVariable UUID commentaryId, @PathVariable String action) {
+    @PutMapping("/like/{commentaryId}/{action}/{userId}")
+    public ResponseEntity<?> updateLikes(
+        @PathVariable UUID commentaryId, @PathVariable String action, @PathVariable UUID userId
+    ) {
         RestfulUpdateCommentaryLikesPresenter presenter = new RestfulUpdateCommentaryLikesPresenter();
         UpdateCommentaryLikesService.RequestModel request = new UpdateCommentaryLikesService.RequestModel(
             commentaryId,
+            userId,
             action
         );
 

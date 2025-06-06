@@ -4,6 +4,10 @@ import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.application.commentary.update.presenter.UpdateCommentaryLikesPresenter;
 import com.example.books_social.application.shared.exceptions.EntityNotFoundException;
+
+import java.util.List;
+import java.util.UUID;
+
 //TODO needs to be refactored to remove validation logic from the service and put it into the entity
 public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesService{
     private final CommentaryRepository repository;
@@ -27,6 +31,8 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
         Integer likes = null;
 
         if (request.action().equals("increase")) {
+            List<UUID> likesList = original.likesList();
+            likesList.add(request.userId());
             CommentaryDto updated = new CommentaryDto(
                 original.commentaryId(),
                 original.bookId(),
@@ -35,8 +41,9 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
                 original.progress(),
                 original.reaction(),
                 original.likes() + 1,
+                likesList,
                 original.createdAt());
-            
+
             likes = updated.likes();
 
             repository.saveOrUpdate(updated);
@@ -46,6 +53,8 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
             if (original.likes() == 0) {
                 throw new IllegalArgumentException("Unable to reduce likes count");
             }
+            List<UUID> likesList = original.likesList();
+            likesList.remove(request.userId());
             CommentaryDto updated = new CommentaryDto(
                     original.commentaryId(),
                     original.bookId(),
@@ -54,6 +63,7 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
                     original.progress(),
                     original.reaction(),
                     original.likes() - 1,
+                    likesList,
                     original.createdAt());
 
             likes = updated.likes();

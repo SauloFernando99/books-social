@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Document("comments")
@@ -20,6 +21,7 @@ public class CommentaryDocument {
     private Integer progress;
     private String reaction;
     private Integer likes;
+    private List<UUID> likesList;
     private LocalDateTime createdAt;
 
     public CommentaryDocument(
@@ -30,6 +32,7 @@ public class CommentaryDocument {
         Integer progress,
         String reaction,
         Integer likes,
+        List<UUID> likesList,
         LocalDateTime createdAt
     ) {
         this.id = id;
@@ -39,6 +42,7 @@ public class CommentaryDocument {
         this.progress = progress;
         this.reaction = reaction;
         this.likes = likes;
+        this.likesList = likesList;
         this.createdAt = createdAt;
     }
 
@@ -96,6 +100,14 @@ public class CommentaryDocument {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public List<UUID> getLikesList() {
+        return likesList;
+    }
+
+    public void setLikesList(List<UUID> likesList) {
+        this.likesList = likesList;
     }
 
     public LocalDateTime getCreatedAt() {

@@ -3,6 +3,8 @@ package com.example.books_social.domain.model.comentary;
 import com.example.books_social.domain.model.book.BookId;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Commentary {
@@ -13,6 +15,7 @@ public class Commentary {
     private Progress progress;
     private Reaction reaction;
     private Integer likes = 0;
+    private List<UUID> likesList = new ArrayList<>();
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public Commentary(
@@ -22,6 +25,7 @@ public class Commentary {
         Progress progress,
         Reaction reaction,
         Integer likes,
+        List<UUID> likesList,
         LocalDateTime createdAt
     ) {
         this.commentaryId = commentaryId;
@@ -30,6 +34,7 @@ public class Commentary {
         this.commentaryText = commentaryText;
         this.progress = progress;
         this.reaction = reaction;
+        this.likesList = likesList;
         this.likes = likes;
         this.createdAt = createdAt;
     }
@@ -96,6 +101,14 @@ public class Commentary {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public List<UUID> getLikesList() {
+        return likesList;
+    }
+
+    public void setLikesList(List<UUID> likesList) {
+        this.likesList = likesList;
     }
 
     public Reaction getReaction() {

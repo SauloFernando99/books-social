@@ -20,6 +20,7 @@ public class CommentaryMapper {
             new Progress(dto.progress()),
             reaction,
             dto.likes(),
+            dto.likesList(),
             dto.createdAt()
         );
     }
@@ -33,6 +34,7 @@ public class CommentaryMapper {
             commentary.getProgress().value(),
             commentary.getReaction().toString(),
             commentary.getLikes(),
+            commentary.getLikesList(),
             commentary.getCreatedAt()
         );
     }

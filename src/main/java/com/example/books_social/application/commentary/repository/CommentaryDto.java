@@ -1,6 +1,7 @@
 package com.example.books_social.application.commentary.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public record CommentaryDto(
@@ -11,5 +12,6 @@ public record CommentaryDto(
         Integer progress,
         String reaction,
         Integer likes,
+        List<UUID> likesList,
         LocalDateTime createdAt
 ) {}
