@@ -16,7 +16,7 @@ public interface CreateCommentaryService {
        UUID bookId,
        UUID userId,
        String commentaryText,
-       Integer progress,
+       Integer readPages,
        String reaction
     ) {}
 

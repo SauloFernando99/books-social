@@ -9,6 +9,7 @@ public record CommentaryDto(
         UUID bookId,
         UUID userId,
         String commentaryText,
+        Integer readPages,
         Integer progress,
         String reaction,
         Integer likes,

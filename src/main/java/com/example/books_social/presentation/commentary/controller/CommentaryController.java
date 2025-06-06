@@ -58,7 +58,7 @@ public class CommentaryController {
             request.bookId(),
             request.userId(),
             request.commentaryText(),
-            request.progress(),
+            request.readPages(),
             request.reaction()
         );
 

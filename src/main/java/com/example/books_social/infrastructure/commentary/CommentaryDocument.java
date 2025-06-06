@@ -18,6 +18,7 @@ public class CommentaryDocument {
     private UUID bookId;
     private UUID userId;
     private String commentaryText;
+    private Integer readPages;
     private Integer progress;
     private String reaction;
     private Integer likes;
@@ -29,6 +30,7 @@ public class CommentaryDocument {
         UUID bookId,
         UUID userId,
         String commentaryText,
+        Integer readPages,
         Integer progress,
         String reaction,
         Integer likes,
@@ -39,6 +41,7 @@ public class CommentaryDocument {
         this.bookId = bookId;
         this.userId = userId;
         this.commentaryText = commentaryText;
+        this.readPages = readPages;
         this.progress = progress;
         this.reaction = reaction;
         this.likes = likes;
@@ -76,6 +79,14 @@ public class CommentaryDocument {
 
     public void setCommentaryText(String commentaryText) {
         this.commentaryText = commentaryText;
+    }
+
+    public Integer getReadPages() {
+        return readPages;
+    }
+
+    public void setReadPages(Integer readPages) {
+        this.readPages = readPages;
     }
 
     public Integer getProgress() {

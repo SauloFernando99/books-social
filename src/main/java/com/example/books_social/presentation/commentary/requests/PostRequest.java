@@ -6,6 +6,6 @@ public record PostRequest(
     UUID bookId,
     UUID userId,
     String commentaryText,
-    Integer progress,
+    Integer readPages,
     String reaction
 ) {}

@@ -17,6 +17,7 @@ public class CommentaryMapper {
             new BookId(dto.bookId()),
             dto.userId(),
             new CommentaryText(dto.commentaryText()),
+            dto.readPages(),
             new Progress(dto.progress()),
             reaction,
             dto.likes(),
@@ -31,6 +32,7 @@ public class CommentaryMapper {
             commentary.getBookId().getValue(),
             commentary.getUserId(),
             commentary.getCommentaryText().toString(),
+            commentary.getReadPages(),
             commentary.getProgress().value(),
             commentary.getReaction().toString(),
             commentary.getLikes(),
@@ -39,15 +41,15 @@ public class CommentaryMapper {
         );
     }
 
-    public static Commentary fromRequestModel(CommentaryId commentaryId, CreateCommentaryService.RequestModel requestModel) {
+    public static Commentary fromRequestModel(CommentaryId commentaryId, Integer progress, CreateCommentaryService.RequestModel requestModel) {
         Reaction reaction = Reaction.valueOf(requestModel.reaction());
-
         return new Commentary(
                 commentaryId,
                 new BookId(requestModel.bookId()),
                 requestModel.userId(),
                 new CommentaryText(requestModel.commentaryText()),
-                new Progress(requestModel.progress()),
+                requestModel.readPages(),
+                new Progress(progress),
                 reaction
         );
     }
@@ -70,6 +72,7 @@ public class CommentaryMapper {
             new BookId(original.bookId()),
             original.userId(),
             commentaryText,
+            original.readPages(),
             progress,
             reaction
         );

@@ -12,6 +12,7 @@ public class Commentary {
     private BookId bookId;
     private UUID userId;
     private CommentaryText commentaryText;
+    private Integer readPages;
     private Progress progress;
     private Reaction reaction;
     private Integer likes = 0;
@@ -22,6 +23,7 @@ public class Commentary {
         CommentaryId commentaryId,
         BookId bookId, UUID userId,
         CommentaryText commentaryText,
+        Integer readPages,
         Progress progress,
         Reaction reaction,
         Integer likes,
@@ -32,6 +34,7 @@ public class Commentary {
         this.bookId = bookId;
         this.userId = userId;
         this.commentaryText = commentaryText;
+        this.readPages = readPages;
         this.progress = progress;
         this.reaction = reaction;
         this.likesList = likesList;
@@ -44,6 +47,7 @@ public class Commentary {
         BookId bookId,
         UUID userId,
         CommentaryText commentaryText,
+        Integer readPages,
         Progress progress,
         Reaction reaction
     ) {
@@ -51,6 +55,7 @@ public class Commentary {
         this.bookId = bookId;
         this.userId = userId;
         this.commentaryText = commentaryText;
+        this.readPages = readPages;
         this.progress = progress;
         this.reaction = reaction;
     }
@@ -85,6 +90,14 @@ public class Commentary {
 
     public void setCommentaryText(CommentaryText commentaryText) {
         this.commentaryText = commentaryText;
+    }
+
+    public Integer getReadPages() {
+        return readPages;
+    }
+
+    public void setReadPages(Integer readPages) {
+        this.readPages = readPages;
     }
 
     public Progress getProgress() {

@@ -1,5 +1,6 @@
 package com.example.books_social.application.commentary.create;
 
+import com.example.books_social.application.book.repository.BookDto;
 import com.example.books_social.application.book.repository.BookRepository;
 import com.example.books_social.application.commentary.repository.CommentaryMapper;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
@@ -25,16 +26,21 @@ public class CreateCommentaryServiceImpl implements CreateCommentaryService{
 
     @Override
     public void createCommentary(CreateCommentaryPresenter presenter, RequestModel request) {
-        CommentaryId commentaryId = new CommentaryId(uuidGeneratorService.next());
-        Commentary commentary = CommentaryMapper.fromRequestModel(commentaryId, request);
+        BookDto bookDto = bookRepository.findById(request.bookId());
 
-        boolean bookExists = bookRepository.existsById(request.bookId());
-
-        if (!bookExists) {
+        if (bookDto == null) {
             String message = "Book of id: " + request.bookId() + "not exists.";
             presenter.prepareFailView(new EntityNotFoundException(message));
             return;
         }
+
+        CommentaryId commentaryId = new CommentaryId(uuidGeneratorService.next());
+
+        int readPages = request.readPages();
+        int totalPages = bookDto.numberPages();
+        int progressPercent = (int) ((readPages / (float) totalPages) * 100);
+
+        Commentary commentary = CommentaryMapper.fromRequestModel(commentaryId, progressPercent, request);
 
         repository.create(CommentaryMapper.toDto(commentary));
         presenter.prepareSuccessView(
