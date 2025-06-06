@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -57,4 +58,42 @@ public class BookRepositoryImpl implements BookRepository {
         return innerRepository.existsByOwnerIdAndTitle(ownerId, title);
     }
 
+    @Override
+    public BookDto findLongestReadBook(UUID ownerId) {
+        return innerRepository.findTopByOwnerIdAndReadingStatusOrderByNumberPagesDesc(ownerId, "FINISHED")
+                .map(BookDbMapper::toDto)
+                .orElse(null);
+    }
+
+    @Override
+    public BookDto findShortestReadBook(UUID ownerId) {
+        return innerRepository.findTopByOwnerIdAndReadingStatusOrderByNumberPagesAsc(ownerId, "FINISHED")
+                .map(BookDbMapper::toDto)
+                .orElse(null);
+    }
+
+    @Override
+    public Integer findTotalRead(UUID ownerId) {
+        List<BookDocument> books = innerRepository.findAllByOwnerIdAndReadingStatus(ownerId, "FINISHED");
+        return books.size();
+    }
+
+    @Override
+    public Integer findReadPages(UUID ownerId) {
+        List<BookDocument> books = innerRepository.findAllByOwnerIdAndReadingStatus(ownerId, "FINISHED");
+        return books.stream().mapToInt(BookDocument::getNumberPages).sum();
+    }
+
+    @Override
+    public String findMostReadGenre(UUID ownerId) {
+        List<BookDocument> books = innerRepository.findAllByOwnerIdAndReadingStatus(ownerId, "FINISHED");
+
+        return books.stream()
+                .filter(book -> book.getGenre() != null)
+                .collect(Collectors.groupingBy(BookDocument::getGenre, Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
 }

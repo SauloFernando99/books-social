@@ -11,4 +11,9 @@ public interface BookRepository {
     boolean existsById(UUID bookId);
     void deleteById(UUID bookId);
     boolean existsByOwnerIdAndTitle(UUID ownerId, String title);
+    BookDto findLongestReadBook(UUID ownerId);
+    BookDto findShortestReadBook(UUID ownerId);
+    Integer findTotalRead(UUID ownerId);
+    Integer findReadPages(UUID ownerId);
+    String findMostReadGenre(UUID ownerId);
 }
