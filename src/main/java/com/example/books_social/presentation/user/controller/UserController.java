@@ -1,9 +1,7 @@
 package com.example.books_social.presentation.user.controller;
 
-import com.example.books_social.application.reply.find.FindAllRepliesService;
 import com.example.books_social.application.user.status.GetUserReadingStatusService;
 import com.example.books_social.application.user.status.GetUserReadingStatusServiceImpl;
-import com.example.books_social.presentation.reply.presenter.RestfulFindAllRepliesPresenter;
 import com.example.books_social.presentation.user.presenter.RestfulGetUserReadingStatusPresenter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
