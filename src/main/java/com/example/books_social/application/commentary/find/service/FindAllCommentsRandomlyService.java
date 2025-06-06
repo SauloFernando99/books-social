@@ -10,6 +10,7 @@ public interface FindAllCommentsRandomlyService {
     void findAllCommentsRandomly(FindAllCommentsRandomlyPresenter presenter, RequestModel request);
 
     public record RequestModel(
+        UUID userId
     ) {}
 
     public record ResponseModel(

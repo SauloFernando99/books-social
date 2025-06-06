@@ -8,6 +8,7 @@ import java.util.List;
 
 public record RandomCommentsResponse(
         String username,
+        boolean isLiked,
         BookDto book,
         CommentaryDto commentary,
         List<ReplyDto> replies

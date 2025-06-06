@@ -48,9 +48,11 @@ public class FindAllCommentsRandomlyServiceImpl implements FindAllCommentsRandom
             String username = accountDto.map(AccountDto::username).orElse("USER NOT FOUND");
             BookDto bookDto = bookRepository.findById(commentaryDto.bookId());
             List<ReplyDto> replies = replyRepository.findAllByCommentaryId(commentaryDto.commentaryId());
+            boolean isLiked = commentaryDto.likesList().contains(request.userId());
 
             RandomCommentsResponse commentary = new RandomCommentsResponse(
                 username,
+                isLiked,
                 bookDto,
                 commentaryDto,
                 replies
