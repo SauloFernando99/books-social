@@ -6,6 +6,7 @@ import com.example.books_social.application.book.find.services.FindAllBooksServi
 import com.example.books_social.application.book.find.services.FindBookServiceImpl;
 import com.example.books_social.application.book.repository.BookRepository;
 import com.example.books_social.application.book.update.service.UpdateBookServiceImpl;
+import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,8 +48,11 @@ public class BookServicesConfiguration {
 
     @Bean
     public DeleteBookServiceImpl deleteBookService(
-        BookRepository bookRepository
+        BookRepository bookRepository,
+        CommentaryRepository commentaryRepository
     ) {
-        return new DeleteBookServiceImpl(bookRepository);
+        return new DeleteBookServiceImpl(
+            bookRepository,
+            commentaryRepository);
     }
 }

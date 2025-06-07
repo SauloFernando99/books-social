@@ -15,4 +15,6 @@ public interface MongoCommentaryRepository extends MongoRepository<CommentaryDoc
             "{ $sample: { size: 10 } }"
     })
     List<CommentaryDocument> findRandomComments();
+
+    void deleteAllByBookId (UUID bookId);
 }

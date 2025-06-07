@@ -15,4 +15,5 @@ public interface CommentaryRepository {
     void deleteById(UUID commentaryId);
     void saveOrUpdate(CommentaryDto dto);
     List<CommentaryDto> findCommentaryRandomly();
+    void deleteAllByBookId (UUID bookId);
 }

@@ -67,4 +67,8 @@ public class CommentaryRepositoryImpl implements CommentaryRepository {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteAllByBookId(UUID bookId) {
+        innerRepository.deleteAllByBookId(bookId);
+    }
 }
