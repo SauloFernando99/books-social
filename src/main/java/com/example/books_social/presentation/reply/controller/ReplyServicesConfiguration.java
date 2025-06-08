@@ -2,6 +2,7 @@ package com.example.books_social.presentation.reply.controller;
 
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.application.reply.create.CreateReplyServiceImpl;
+import com.example.books_social.application.reply.delete.DeleteReplyServiceImpl;
 import com.example.books_social.application.reply.find.FindAllRepliesServiceImpl;
 import com.example.books_social.application.reply.repository.ReplyRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
@@ -35,6 +36,15 @@ public class ReplyServicesConfiguration {
         return new FindAllRepliesServiceImpl(
             replyRepository,
             commentaryRepository
+        );
+    }
+
+    @Bean
+    DeleteReplyServiceImpl deleteReplyService(
+        ReplyRepository replyRepository
+    ) {
+        return new DeleteReplyServiceImpl(
+            replyRepository
         );
     }
 }
