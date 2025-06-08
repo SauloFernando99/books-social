@@ -7,6 +7,7 @@ import com.example.books_social.application.commentary.find.presenter.FindAllCom
 import com.example.books_social.application.commentary.repository.CommentaryDto;
 import com.example.books_social.application.commentary.repository.CommentaryRepository;
 import com.example.books_social.application.commentary.utils.RandomCommentsResponse;
+import com.example.books_social.application.commentary.utils.ReplyResponse;
 import com.example.books_social.application.reply.repository.ReplyDto;
 import com.example.books_social.application.reply.repository.ReplyRepository;
 import com.example.books_social.infrastructure.account.AccountRepository;
@@ -50,12 +51,22 @@ public class FindAllCommentsRandomlyServiceImpl implements FindAllCommentsRandom
             List<ReplyDto> replies = replyRepository.findAllByCommentaryId(commentaryDto.commentaryId());
             boolean isLiked = commentaryDto.likesList().contains(request.userId());
 
+            List<ReplyResponse> replieslist = new ArrayList<>();
+
+            for (ReplyDto reply: replies) {
+                AccountDto account = accountRepository.findById(reply.userId()).orElse(null);
+                assert account != null;
+                String replyUserName = account.username();
+                new ReplyResponse(replyUserName, reply);
+                replieslist.add(new ReplyResponse(replyUserName, reply));
+            }
+
             RandomCommentsResponse commentary = new RandomCommentsResponse(
                 username,
                 isLiked,
                 bookDto,
                 commentaryDto,
-                replies
+                replieslist
             );
 
             randomComments.add(commentary);

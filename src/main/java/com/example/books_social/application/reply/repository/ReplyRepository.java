@@ -6,4 +6,5 @@ import java.util.UUID;
 public interface ReplyRepository {
     void create(ReplyDto dto);
     List<ReplyDto> findAllByCommentaryId(UUID commentaryId);
+    ReplyDto findById(UUID replyId);
 }

@@ -28,4 +28,10 @@ public class ReplyRepositoryImpl implements ReplyRepository {
         return innerRepository.findAllByCommentaryId(commentaryId).stream().map(ReplyDbMapper::toDto).collect(Collectors.toList());
 
     }
+
+    @Override
+    public ReplyDto findById(UUID replyId) {
+        return innerRepository.findById(replyId).map(ReplyDbMapper::toDto) .orElse(null);
+    }
+
 }

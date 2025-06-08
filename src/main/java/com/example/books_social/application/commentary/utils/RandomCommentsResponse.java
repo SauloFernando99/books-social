@@ -11,5 +11,6 @@ public record RandomCommentsResponse(
         boolean isLiked,
         BookDto book,
         CommentaryDto commentary,
-        List<ReplyDto> replies
+        List<ReplyResponse> replies
 ) { }
+
