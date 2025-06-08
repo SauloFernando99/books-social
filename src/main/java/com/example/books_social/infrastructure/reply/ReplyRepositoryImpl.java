@@ -34,4 +34,14 @@ public class ReplyRepositoryImpl implements ReplyRepository {
         return innerRepository.findById(replyId).map(ReplyDbMapper::toDto) .orElse(null);
     }
 
+    @Override
+    public void deleteById(UUID replyId) {
+        innerRepository.deleteById(replyId);
+    }
+
+    @Override
+    public boolean existsById(UUID replyId) {
+        return innerRepository.existsById(replyId);
+    }
+
 }

@@ -7,4 +7,6 @@ public interface ReplyRepository {
     void create(ReplyDto dto);
     List<ReplyDto> findAllByCommentaryId(UUID commentaryId);
     ReplyDto findById(UUID replyId);
+    void deleteById(UUID replyId);
+    boolean existsById(UUID replyId);
 }
