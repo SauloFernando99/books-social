@@ -2,9 +2,12 @@ package com.example.books_social.presentation.reply.controller;
 
 import com.example.books_social.application.reply.create.CreateReplyService;
 import com.example.books_social.application.reply.create.CreateReplyServiceImpl;
+import com.example.books_social.application.reply.delete.DeleteReplyService;
+import com.example.books_social.application.reply.delete.DeleteReplyServiceImpl;
 import com.example.books_social.application.reply.find.FindAllRepliesService;
 import com.example.books_social.application.reply.find.FindAllRepliesServiceImpl;
 import com.example.books_social.presentation.reply.presenter.RestfulCreateReplyPresenter;
+import com.example.books_social.presentation.reply.presenter.RestfulDeleteReplyPresenter;
 import com.example.books_social.presentation.reply.presenter.RestfulFindAllRepliesPresenter;
 import com.example.books_social.presentation.reply.requests.PostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +22,17 @@ import java.util.UUID;
 public class ReplyController {
     private final CreateReplyServiceImpl createReplyService;
     private final FindAllRepliesServiceImpl findAllRepliesService;
+    private final DeleteReplyServiceImpl deleteReplyService;
 
     @Autowired
     public ReplyController(
         CreateReplyServiceImpl createReplyService,
-        FindAllRepliesServiceImpl findAllRepliesService
+        FindAllRepliesServiceImpl findAllRepliesService,
+        DeleteReplyServiceImpl deleteReplyService
     ) {
         this.createReplyService = createReplyService;
         this.findAllRepliesService = findAllRepliesService;
+        this.deleteReplyService = deleteReplyService;
     }
 
     @PostMapping
@@ -51,6 +57,17 @@ public class ReplyController {
         RestfulFindAllRepliesPresenter presenter = new RestfulFindAllRepliesPresenter();
 
         findAllRepliesService.findAllByCommentaryId(presenter, new FindAllRepliesService.RequestModel(commentaryId));
+
+        return presenter.getResponseEntity() != null
+                ? presenter.getResponseEntity()
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    @DeleteMapping("delete/{replyId}")
+    public ResponseEntity<?> deleteReply(@PathVariable UUID replyId) {
+        RestfulDeleteReplyPresenter presenter = new RestfulDeleteReplyPresenter();
+
+        deleteReplyService.deleteReply(presenter, new DeleteReplyService.RequestModel(replyId));
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()
