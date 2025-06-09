@@ -2,6 +2,7 @@ package com.example.books_social.presentation.reply.presenter;
 
 import com.example.books_social.application.commentary.find.service.FindAllCommentsService;
 import com.example.books_social.application.commentary.repository.CommentaryDto;
+import com.example.books_social.application.commentary.utils.ReplyResponse;
 import com.example.books_social.application.reply.find.FindAllRepliesPresenter;
 import com.example.books_social.application.reply.find.FindAllRepliesService;
 import com.example.books_social.application.reply.repository.ReplyDto;
@@ -47,9 +48,9 @@ public class RestfulFindAllRepliesPresenter implements FindAllRepliesPresenter {
     private static class ViewModel extends RepresentationModel<RestfulFindAllRepliesPresenter.ViewModel> {
         private final UUID commentaryId;
         private final Integer numberOfReplies;
-        private final List<ReplyDto> replies;
+        private final List<ReplyResponse> replies;
 
-        public ViewModel(UUID commentaryId, Integer numberOfReplies, List<ReplyDto> replies) {
+        public ViewModel(UUID commentaryId, Integer numberOfReplies, List<ReplyResponse> replies) {
             this.commentaryId = commentaryId;
             this.numberOfReplies = numberOfReplies;
             this.replies = replies;
@@ -63,7 +64,7 @@ public class RestfulFindAllRepliesPresenter implements FindAllRepliesPresenter {
             return numberOfReplies;
         }
 
-        public List<ReplyDto> getReplies() {
+        public List<ReplyResponse> getReplies() {
             return replies;
         }
     }

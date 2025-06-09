@@ -1,5 +1,6 @@
 package com.example.books_social.application.reply.find;
 
+import com.example.books_social.application.commentary.utils.ReplyResponse;
 import com.example.books_social.application.reply.repository.ReplyDto;
 
 import java.util.List;
@@ -12,6 +13,6 @@ public interface FindAllRepliesService {
     public record ResponseModel(
         UUID commentaryId,
         Integer numberOfReplies,
-        List<ReplyDto> replies
+        List<ReplyResponse> replies
     ) {}
 }

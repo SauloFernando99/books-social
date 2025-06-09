@@ -6,6 +6,7 @@ import com.example.books_social.application.reply.delete.DeleteReplyServiceImpl;
 import com.example.books_social.application.reply.find.FindAllRepliesServiceImpl;
 import com.example.books_social.application.reply.repository.ReplyRepository;
 import com.example.books_social.domain.services.UuidGeneratorService;
+import com.example.books_social.infrastructure.account.AccountRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class ReplyServicesConfiguration {
     ReplyRepository replyRepository;
     CommentaryRepository commentaryRepository;
+    AccountRepository accountRepository;
     UuidGeneratorService uuidGeneratorService;
 
     @Bean
@@ -31,11 +33,13 @@ public class ReplyServicesConfiguration {
     @Bean
     public FindAllRepliesServiceImpl findAllRepliesService(
         ReplyRepository replyRepository,
-        CommentaryRepository commentaryRepository
+        CommentaryRepository commentaryRepository,
+        AccountRepository accountRepository
     ) {
         return new FindAllRepliesServiceImpl(
             replyRepository,
-            commentaryRepository
+            commentaryRepository,
+            accountRepository
         );
     }
 
