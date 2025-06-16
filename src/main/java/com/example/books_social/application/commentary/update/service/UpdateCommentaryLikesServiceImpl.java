@@ -41,6 +41,7 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
                 original.readPages(),
                 original.progress(),
                 original.reaction(),
+                original.isSpoiler(),
                 original.likes() + 1,
                 likesList,
                 original.createdAt());
@@ -64,6 +65,7 @@ public class UpdateCommentaryLikesServiceImpl implements UpdateCommentaryLikesSe
                     original.readPages(),
                     original.progress(),
                     original.reaction(),
+                    original.isSpoiler(),
                     original.likes() - 1,
                     likesList,
                     original.createdAt());

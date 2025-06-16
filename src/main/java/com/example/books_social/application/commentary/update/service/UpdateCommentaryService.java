@@ -15,7 +15,8 @@ public interface UpdateCommentaryService {
        UUID commentaryId,
        String CommentaryText,
        Integer readPages,
-       String reaction
+       String reaction,
+       boolean isSpoiler
     ) {}
 
     public record ResponseModel(

@@ -12,6 +12,7 @@ public record CommentaryDto(
         Integer readPages,
         Integer progress,
         String reaction,
+        boolean isSpoiler,
         Integer likes,
         List<UUID> likesList,
         LocalDateTime createdAt

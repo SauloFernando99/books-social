@@ -15,6 +15,7 @@ public class Commentary {
     private Integer readPages;
     private Progress progress;
     private Reaction reaction;
+    private boolean isSpoiler;
     private Integer likes = 0;
     private List<UUID> likesList = new ArrayList<>();
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -26,6 +27,7 @@ public class Commentary {
         Integer readPages,
         Progress progress,
         Reaction reaction,
+        boolean isSpoiler,
         Integer likes,
         List<UUID> likesList,
         LocalDateTime createdAt
@@ -37,6 +39,7 @@ public class Commentary {
         this.readPages = readPages;
         this.progress = progress;
         this.reaction = reaction;
+        this.isSpoiler = isSpoiler;
         this.likesList = likesList;
         this.likes = likes;
         this.createdAt = createdAt;
@@ -49,7 +52,8 @@ public class Commentary {
         CommentaryText commentaryText,
         Integer readPages,
         Progress progress,
-        Reaction reaction
+        Reaction reaction,
+        boolean isSpoiler
     ) {
         this.commentaryId = commentaryId;
         this.bookId = bookId;
@@ -58,6 +62,7 @@ public class Commentary {
         this.readPages = readPages;
         this.progress = progress;
         this.reaction = reaction;
+        this.isSpoiler = isSpoiler;
     }
 
     public CommentaryId getCommentaryId() {
@@ -106,6 +111,14 @@ public class Commentary {
 
     public void setProgress(Progress progress) {
         this.progress = progress;
+    }
+
+    public boolean isSpoiler() {
+        return isSpoiler;
+    }
+
+    public void setSpoiler(boolean spoiler) {
+        isSpoiler = spoiler;
     }
 
     public Integer getLikes() {

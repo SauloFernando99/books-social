@@ -20,6 +20,7 @@ public class CommentaryMapper {
             dto.readPages(),
             new Progress(dto.progress()),
             reaction,
+            dto.isSpoiler(),
             dto.likes(),
             dto.likesList(),
             dto.createdAt()
@@ -35,6 +36,7 @@ public class CommentaryMapper {
             commentary.getReadPages(),
             commentary.getProgress().value(),
             commentary.getReaction().toString(),
+            commentary.isSpoiler(),
             commentary.getLikes(),
             commentary.getLikesList(),
             commentary.getCreatedAt()
@@ -50,7 +52,8 @@ public class CommentaryMapper {
                 new CommentaryText(requestModel.commentaryText()),
                 requestModel.readPages(),
                 new Progress(progress),
-                reaction
+                reaction,
+                requestModel.isSpoiler()
         );
     }
 
@@ -59,7 +62,8 @@ public class CommentaryMapper {
             commentaryId,
             request.commentaryText(),
             request.readPages(),
-            request.reaction()
+            request.reaction(),
+            request.isSpoiler()
         );
     }
 
@@ -74,7 +78,8 @@ public class CommentaryMapper {
             commentaryText,
             request.readPages() != null ? request.readPages() : original.readPages(),
             progress,
-            reaction
+            reaction,
+            request.isSpoiler()
         );
     }
 }

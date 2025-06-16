@@ -7,5 +7,6 @@ public record PostRequest(
     UUID userId,
     String commentaryText,
     Integer readPages,
-    String reaction
+    String reaction,
+    boolean isSpoiler
 ) {}

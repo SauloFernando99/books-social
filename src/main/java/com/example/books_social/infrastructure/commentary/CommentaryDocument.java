@@ -21,6 +21,7 @@ public class CommentaryDocument {
     private Integer readPages;
     private Integer progress;
     private String reaction;
+    private boolean isSpoiler;
     private Integer likes;
     private List<UUID> likesList;
     private LocalDateTime createdAt;
@@ -33,6 +34,7 @@ public class CommentaryDocument {
         Integer readPages,
         Integer progress,
         String reaction,
+        boolean isSpoiler,
         Integer likes,
         List<UUID> likesList,
         LocalDateTime createdAt
@@ -44,6 +46,7 @@ public class CommentaryDocument {
         this.readPages = readPages;
         this.progress = progress;
         this.reaction = reaction;
+        this.isSpoiler = isSpoiler;
         this.likes = likes;
         this.likesList = likesList;
         this.createdAt = createdAt;
@@ -103,6 +106,14 @@ public class CommentaryDocument {
 
     public void setReaction(String reaction) {
         this.reaction = reaction;
+    }
+
+    public boolean isSpoiler() {
+        return isSpoiler;
+    }
+
+    public void setSpoiler(boolean spoiler) {
+        isSpoiler = spoiler;
     }
 
     public Integer getLikes() {

@@ -17,7 +17,8 @@ public interface CreateCommentaryService {
        UUID userId,
        String commentaryText,
        Integer readPages,
-       String reaction
+       String reaction,
+       boolean isSpoiler
     ) {}
 
     public record ResponseModel(

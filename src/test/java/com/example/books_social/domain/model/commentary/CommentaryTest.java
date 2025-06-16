@@ -22,7 +22,7 @@ class CommentaryTest {
         Progress progress = new Progress(75);
         Reaction reaction = Reaction.AMAZED;
 
-        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText,1, progress, reaction);
+        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText,1, progress, reaction, false);
 
         assertEquals(commentaryId, commentary.getCommentaryId());
         assertEquals(bookId, commentary.getBookId());
@@ -44,7 +44,7 @@ class CommentaryTest {
         LocalDateTime now = LocalDateTime.now();
         List<UUID> list = new ArrayList<>();
 
-        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText,1, progress, reaction, 0, list, now);
+        Commentary commentary = new Commentary(commentaryId, bookId, userId, commentaryText,1, progress, reaction, false, 0, list, now);
 
         assertEquals(now, commentary.getCreatedAt());
     }
@@ -58,7 +58,8 @@ class CommentaryTest {
                 new CommentaryText("Inicial"),
                 1,
                 new Progress(10),
-                Reaction.AMAZED
+                Reaction.AMAZED,
+                false
         );
 
         CommentaryText newText = new CommentaryText("Texto atualizado");

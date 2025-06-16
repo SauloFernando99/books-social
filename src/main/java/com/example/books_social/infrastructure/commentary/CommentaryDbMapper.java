@@ -12,6 +12,7 @@ public class CommentaryDbMapper {
                 dto.readPages(),
                 dto.progress(),
                 dto.reaction(),
+                dto.isSpoiler(),
                 dto.likes(),
                 dto.likesList(),
                 dto.createdAt()
@@ -27,6 +28,7 @@ public class CommentaryDbMapper {
             document.getReadPages(),
             document.getProgress(),
             document.getReaction(),
+            document.isSpoiler(),
             document.getLikes(),
             document.getLikesList(),
             document.getCreatedAt()

@@ -59,7 +59,8 @@ public class CommentaryController {
             request.userId(),
             request.commentaryText(),
             request.readPages(),
-            request.reaction()
+            request.reaction(),
+            request.isSpoiler()
         );
 
         createCommentaryService.createCommentary(presenter, model);
