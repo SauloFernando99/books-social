@@ -1,8 +1,8 @@
 package com.example.books_social.presentation.user.controller;
 
-import com.example.books_social.application.user.status.GetUserReadingStatusService;
-import com.example.books_social.application.user.status.GetUserReadingStatusServiceImpl;
-import com.example.books_social.presentation.user.presenter.RestfulGetUserReadingStatusPresenter;
+import com.example.books_social.application.user.statistics.GetUserReadingStatisticsService;
+import com.example.books_social.application.user.statistics.GetUserReadingStatisticsServiceImpl;
+import com.example.books_social.presentation.user.presenter.RestfulGetUserReadingStatisticsPresenter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/status")
+@RequestMapping("api/v1/statistics")
 public class UserController {
 
-    private final GetUserReadingStatusServiceImpl getUserReadingStatusService;
+    private final GetUserReadingStatisticsServiceImpl getUserReadingStatusService;
 
     @Autowired
     public UserController(
-        GetUserReadingStatusServiceImpl getUserReadingStatusService
+        GetUserReadingStatisticsServiceImpl getUserReadingStatusService
     ) {
         this.getUserReadingStatusService = getUserReadingStatusService;
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<?> findUserReadingStatus(@PathVariable UUID userId) {
-        RestfulGetUserReadingStatusPresenter presenter = new RestfulGetUserReadingStatusPresenter();
+        RestfulGetUserReadingStatisticsPresenter presenter = new RestfulGetUserReadingStatisticsPresenter();
 
-        getUserReadingStatusService.getUserReadingStatus(presenter, new GetUserReadingStatusService.RequestModel(userId));
+        getUserReadingStatusService.getUserReadingStatistics(presenter, new GetUserReadingStatisticsService.RequestModel(userId));
 
         return presenter.getResponseEntity() != null
                 ? presenter.getResponseEntity()

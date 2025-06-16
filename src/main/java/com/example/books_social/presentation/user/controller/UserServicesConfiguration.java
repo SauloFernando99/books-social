@@ -1,7 +1,7 @@
 package com.example.books_social.presentation.user.controller;
 
 import com.example.books_social.application.book.repository.BookRepository;
-import com.example.books_social.application.user.status.GetUserReadingStatusServiceImpl;
+import com.example.books_social.application.user.statistics.GetUserReadingStatisticsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,10 +10,10 @@ public class UserServicesConfiguration {
     BookRepository bookRepository;
 
     @Bean
-    public GetUserReadingStatusServiceImpl getUserReadingStatusService(
+    public GetUserReadingStatisticsServiceImpl getUserReadingStatusService(
         BookRepository bookRepository
     ) {
-        return new GetUserReadingStatusServiceImpl(
+        return new GetUserReadingStatisticsServiceImpl(
             bookRepository
         );
     }

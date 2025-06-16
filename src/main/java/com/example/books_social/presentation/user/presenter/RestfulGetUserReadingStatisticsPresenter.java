@@ -1,26 +1,22 @@
 package com.example.books_social.presentation.user.presenter;
 
 import com.example.books_social.application.book.repository.BookDto;
-import com.example.books_social.application.reply.repository.ReplyDto;
-import com.example.books_social.application.user.status.GetUserReadingStatusPresenter;
-import com.example.books_social.application.user.status.GetUserReadingStatusService;
+import com.example.books_social.application.user.statistics.GetUserReadingStatisticsPresenter;
+import com.example.books_social.application.user.statistics.GetUserReadingStatisticsService;
 import com.example.books_social.presentation.shared.error.ErrorResponseEntityFactory;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
-import java.util.UUID;
-
-public class RestfulGetUserReadingStatusPresenter implements GetUserReadingStatusPresenter {
+public class RestfulGetUserReadingStatisticsPresenter implements GetUserReadingStatisticsPresenter {
     private ResponseEntity<?> responseEntity;
 
-    public RestfulGetUserReadingStatusPresenter(){}
+    public RestfulGetUserReadingStatisticsPresenter(){}
 
     @Override
-    public void prepareSuccessView(GetUserReadingStatusService.ResponseModel response) {
-        RestfulGetUserReadingStatusPresenter.ViewModel restfulResponse =
-            new RestfulGetUserReadingStatusPresenter.ViewModel(
+    public void prepareSuccessView(GetUserReadingStatisticsService.ResponseModel response) {
+        RestfulGetUserReadingStatisticsPresenter.ViewModel restfulResponse =
+            new RestfulGetUserReadingStatisticsPresenter.ViewModel(
                 response.longestReadBook(),
                 response.shortestReadBook(),
                 response.totalRead(),

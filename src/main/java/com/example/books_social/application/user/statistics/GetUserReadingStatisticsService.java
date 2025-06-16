@@ -1,12 +1,12 @@
-package com.example.books_social.application.user.status;
+package com.example.books_social.application.user.statistics;
 
 import com.example.books_social.application.book.repository.BookDto;
 
 import java.util.UUID;
 
-public interface GetUserReadingStatusService {
-    void getUserReadingStatus (
-        GetUserReadingStatusPresenter presenter,
+public interface GetUserReadingStatisticsService {
+    void getUserReadingStatistics(
+        GetUserReadingStatisticsPresenter presenter,
         RequestModel request
     );
 
